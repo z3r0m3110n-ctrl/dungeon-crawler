@@ -1,0 +1,4 @@
+godot_super-wakatime
+# Godot 4+ specific ignores
+.godot/
+/android/
