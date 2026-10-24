@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bemkydg0w0hdp"
-path="res://.godot/imported/BKILF5.png-9799deea99e1d381ab65ed4410d0413a.ctex"
+uid="uid://b1ena4k4o2bs1"
+path="res://.godot/imported/Walk.png-213f0b8652a6fafff7d4f633e3c8f866.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/idle_up/BKILF5.png"
-dest_files=["res://.godot/imported/BKILF5.png-9799deea99e1d381ab65ed4410d0413a.ctex"]
+source_file="res://player/sprites/Walk.png"
+dest_files=["res://.godot/imported/Walk.png-213f0b8652a6fafff7d4f633e3c8f866.ctex"]
 
 [params]
 
