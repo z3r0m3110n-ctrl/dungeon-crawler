@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [16]
 }
 
-[sub_resource type="Animation" id="Animation_ebec5"]
+[sub_resource type="Animation" id="Animation_s7qer"]
 resource_name = "idle_down"
 length = 2.0
 loop_mode = 2
@@ -38,10 +38,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [17, 18, 18, 19, 20]
+"values": [34, 35, 35, 36, 37]
 }
 
-[sub_resource type="Animation" id="Animation_s7qer"]
+[sub_resource type="Animation" id="Animation_ebec5"]
 resource_name = "idle_side"
 length = 2.0
 loop_mode = 2
@@ -55,7 +55,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [34, 35, 35, 36, 37]
+"values": [105, 106, 107, 108, 109]
 }
 
 [sub_resource type="Animation" id="Animation_g4c7l"]
@@ -72,7 +72,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [74, 75, 76, 77, 78]
+"values": [91, 92, 93, 94, 95]
 }
 
 [sub_resource type="Animation" id="Animation_g1dw6"]
@@ -129,8 +129,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yllr7"]
 _data = {
 &"RESET": SubResource("Animation_2ieo8"),
-&"idle_down": SubResource("Animation_ebec5"),
-&"idle_side": SubResource("Animation_s7qer"),
+&"idle_down": SubResource("Animation_s7qer"),
+&"idle_side": SubResource("Animation_ebec5"),
 &"idle_up": SubResource("Animation_g4c7l"),
 &"walk_down": SubResource("Animation_g1dw6"),
 &"walk_side": SubResource("Animation_rkbax"),
