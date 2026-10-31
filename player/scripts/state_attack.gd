@@ -9,6 +9,7 @@ var attacking : bool = false
 @onready var idle: State_Idle = $"../Idle"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var audio: AudioStreamPlayer2D = $"../../AudioStreamPlayer2D"
+@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
 
 ## What happens when the player enters this State?
 func Enter() -> void:
@@ -19,6 +20,9 @@ func Enter() -> void:
 	audio.pitch_scale = randf_range(0.8, 1.3)
 	audio.play()
 	attacking = true
+	
+	await get_tree().create_timer(0.15).timeout
+	hurt_box.monitoring = true
 	pass
 
 
@@ -26,6 +30,7 @@ func Enter() -> void:
 func Exit() -> void:
 	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
+	hurt_box.monitoring = false
 	pass
 	
 	
