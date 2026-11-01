@@ -3,15 +3,18 @@ class_name Player extends CharacterBody2D
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var state_machine : PlayerStateMachine = $StateMachine
+@onready var tile_map: LevelTileMap = $"../Grass01"
 
 signal DirectionChanged(new_direction : Vector2)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	state_machine.Initialize(self)
+
 	pass # Replace with function body.
 
 
@@ -27,6 +30,18 @@ func _process( _delta ):
 	
 func _physics_process(_delta):
 	move_and_slide()
+	# set player limits TODO: make this get the values instead of hardcoded
+	var margin = 5.0
+	global_position.x = clampf(
+		global_position.x,
+		-600 + margin,
+		3250 - margin
+	)
+	global_position.y = clampf(
+		global_position.y,
+		-350 + margin,
+		2000 - margin
+	)
 	
 	
 	
