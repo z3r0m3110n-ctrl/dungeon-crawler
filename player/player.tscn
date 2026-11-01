@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://2vurrbppgyix" path="res://generalNodes/hurtBox/hurt_box.gd" id="10_8t03j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d7q6v"]
-radius = 30.265491
+radius = 49.497475
 
 [sub_resource type="Animation" id="Animation_2ieo8"]
 length = 0.001
@@ -320,7 +320,7 @@ radius = 42.72002
 script = ExtResource("1_rkbax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=954061570]
-position = Vector2(547, 307)
+position = Vector2(546, 255)
 shape = SubResource("CircleShape2D_d7q6v")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=850518011]
@@ -361,6 +361,6 @@ script = ExtResource("10_8t03j")
 metadata/_custom_type_script = "uid://2vurrbppgyix"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox" unique_id=22834614]
-position = Vector2(546, 315)
+position = Vector2(549, 297)
 shape = SubResource("CircleShape2D_ef5j6")
 debug_color = Color(0.7303774, 0.16667664, 0.28575525, 0.41960785)
