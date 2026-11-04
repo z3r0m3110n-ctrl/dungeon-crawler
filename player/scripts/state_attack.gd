@@ -23,7 +23,6 @@ func Enter() -> void:
 	
 	await get_tree().create_timer(0.15).timeout
 	hurt_box.monitoring = true
-	pass
 
 
 ## What happens when the player exits this State?
@@ -31,7 +30,6 @@ func Exit() -> void:
 	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
 	hurt_box.monitoring = false
-	pass
 	
 	
 func Physics( _delta : float) -> State:

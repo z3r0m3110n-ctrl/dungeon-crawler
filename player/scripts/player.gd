@@ -15,18 +15,14 @@ signal DirectionChanged(new_direction : Vector2)
 func _ready():
 	state_machine.Initialize(self)
 
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process( _delta ):
-	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	direction = Vector2(
 		Input.get_axis("left","right"),
 		Input.get_axis("up","down")
 	).normalized()
-	pass
+
 	
 func _physics_process(_delta):
 	move_and_slide()
@@ -65,7 +61,6 @@ func SetDirection() -> bool:
 	
 func UpdateAnimation( state : String ) -> void:
 	animation_player.play(state + "_" + AnimDirection())
-	pass
 
 
 func AnimDirection() -> String:

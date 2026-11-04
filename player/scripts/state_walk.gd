@@ -8,7 +8,6 @@ class_name State_Walk extends State
 ## What happens when the player enters this State?
 func Enter() -> void:
 	player.UpdateAnimation("walk")
-	pass
 
 
 ## What happens when the player exits this State?

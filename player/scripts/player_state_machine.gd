@@ -8,17 +8,17 @@ var current_state : State
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	process_mode = Node.PROCESS_MODE_DISABLED
-	pass # Replace with function body.
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	ChangeState( current_state.Process( delta ) )
-	pass
+
 
 func _physics_process(delta):
 	ChangeState(current_state.Physics(delta ))
-	pass
+
 
 func Initialize( _player : Player ) -> void:
 	states = []
@@ -33,7 +33,7 @@ func Initialize( _player : Player ) -> void:
 	
 func _unhandled_input(event):
 		ChangeState( current_state.HandleInput( event ))
-		pass
+
 	
 func ChangeState(new_state : State) -> void:
 	if new_state == null || new_state == current_state:
