@@ -14,6 +14,7 @@ signal DirectionChanged(new_direction : Vector2)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	state_machine.Initialize(self)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,7 +39,6 @@ func _physics_process(_delta):
 		-350 + margin,
 		2000 - margin
 	)
-	
 	
 	
 func SetDirection() -> bool:

@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://dsvh5ii4i0r1y"]
+
+[ext_resource type="Script" uid="uid://cuatrlljgriqw" path="res://enemies/shade/shade.gd" id="1_0ufoh"]
+[ext_resource type="Texture2D" uid="uid://bwht4yt3cjvfh" path="res://enemies/sprites/Shade_Idle.png" id="2_0ufoh"]
+[ext_resource type="PackedScene" uid="uid://b2hyhv1hxliah" path="res://generalNodes/hitBox/hit_box.tscn" id="2_i0osc"]
+[ext_resource type="Texture2D" uid="uid://bix4ntt5ln7fr" path="res://Tile Maps/particles/blast.png" id="4_eypja"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0osc"]
+size = Vector2(80, 167)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7q6v"]
+size = Vector2(80, 168)
+
+[sub_resource type="Animation" id="Animation_eypja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shade:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [105]
+}
+
+[sub_resource type="Animation" id="Animation_3amuy"]
+resource_name = "idle_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shade:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [105, 106, 107, 109, 109]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_st52h"]
+_data = {
+&"RESET": SubResource("Animation_eypja"),
+&"idle_down": SubResource("Animation_3amuy")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eypja"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="Shade" type="CharacterBody2D" unique_id=1663971825]
+script = ExtResource("1_0ufoh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=609696778]
+position = Vector2(258, 247.5)
+shape = SubResource("RectangleShape2D_i0osc")
+
+[node name="Shade" type="Sprite2D" parent="." unique_id=2000197209]
+position = Vector2(261, 255)
+scale = Vector2(2, 2)
+texture = ExtResource("2_0ufoh")
+hframes = 15
+vframes = 8
+frame = 105
+metadata/_edit_group_ = true
+
+[node name="HitBox" parent="." unique_id=752617987 instance=ExtResource("2_i0osc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=512341437]
+position = Vector2(257, 248)
+shape = SubResource("RectangleShape2D_d7q6v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=101903537]
+libraries/ = SubResource("AnimationLibrary_st52h")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=87370396]
+position = Vector2(222, 173)
+emitting = false
+texture = ExtResource("4_eypja")
+explosiveness = 0.32
+randomness = 0.36
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_eypja")

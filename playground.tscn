@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d27imcddjrt12" path="res://player/scripts/player_camera.gd" id="2_is3ju"]
 [ext_resource type="PackedScene" uid="uid://be78d8nq2wdbt" path="res://Tile Maps/grass-01.tscn" id="3_m8u5f"]
 [ext_resource type="PackedScene" uid="uid://cvv6ld2e1yqpi" path="res://props/barrels/barrel.tscn" id="4_is3ju"]
+[ext_resource type="PackedScene" uid="uid://dsvh5ii4i0r1y" path="res://enemies/shade/shade.tscn" id="5_o00ia"]
 
 [node name="Playground" type="Node2D" unique_id=1537340738]
 y_sort_enabled = true
@@ -41,3 +42,5 @@ position = Vector2(2303, 951)
 
 [node name="Barrel2" parent="." unique_id=1239069520 instance=ExtResource("4_is3ju")]
 position = Vector2(1366, 145)
+
+[node name="Shade" parent="." unique_id=1663971825 instance=ExtResource("5_o00ia")]
