@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://cuatrlljgriqw" path="res://enemies/shade/shade.gd" id="1_0ufoh"]
 [ext_resource type="Texture2D" uid="uid://bwht4yt3cjvfh" path="res://enemies/sprites/Shade_Idle.png" id="2_0ufoh"]
 [ext_resource type="PackedScene" uid="uid://b2hyhv1hxliah" path="res://generalNodes/hitBox/hit_box.tscn" id="2_i0osc"]
-[ext_resource type="Texture2D" uid="uid://bix4ntt5ln7fr" path="res://Tile Maps/particles/blast.png" id="4_eypja"]
+[ext_resource type="Texture2D" uid="uid://6vo3su65jkff" path="res://enemies/sprites/Shade_Walk.png" id="4_3amuy"]
+[ext_resource type="Texture2D" uid="uid://bix4ntt5ln7fr" path="res://Tile Maps/particles/blast.png" id="5_3amuy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0osc"]
-size = Vector2(80, 167)
+size = Vector2(35, 77)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7q6v"]
-size = Vector2(80, 168)
+size = Vector2(75, 142)
 
 [sub_resource type="Animation" id="Animation_eypja"]
 length = 0.001
@@ -23,64 +24,114 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [105]
+"values": [113]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shade:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_0ufoh")]
 }
 
 [sub_resource type="Animation" id="Animation_3amuy"]
 resource_name = "idle_down"
+length = 1.8666667
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shade:frame")
+tracks/0/path = NodePath("Shade:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [105, 106, 107, 109, 109]
+"values": [ExtResource("2_0ufoh")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shade:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127]
+}
+
+[sub_resource type="Animation" id="Animation_st52h"]
+resource_name = "walk_down"
+length = 1.8666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shade:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_3amuy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shade:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_st52h"]
 _data = {
 &"RESET": SubResource("Animation_eypja"),
-&"idle_down": SubResource("Animation_3amuy")
+&"idle_down": SubResource("Animation_3amuy"),
+&"walk_down": SubResource("Animation_st52h")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eypja"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
-
 [node name="Shade" type="CharacterBody2D" unique_id=1663971825]
+collision_layer = 256
 script = ExtResource("1_0ufoh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=609696778]
-position = Vector2(258, 247.5)
+position = Vector2(262.5, 250.5)
 shape = SubResource("RectangleShape2D_i0osc")
 
 [node name="Shade" type="Sprite2D" parent="." unique_id=2000197209]
-position = Vector2(261, 255)
+position = Vector2(266, 262)
 scale = Vector2(2, 2)
 texture = ExtResource("2_0ufoh")
-hframes = 15
+hframes = 16
 vframes = 8
-frame = 105
+frame = 113
 metadata/_edit_group_ = true
 
 [node name="HitBox" parent="." unique_id=752617987 instance=ExtResource("2_i0osc")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=512341437]
-position = Vector2(257, 248)
+position = Vector2(270, 259)
 shape = SubResource("RectangleShape2D_d7q6v")
+debug_color = Color(0.90566784, 0.2678384, 0.38101792, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=101903537]
 libraries/ = SubResource("AnimationLibrary_st52h")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=87370396]
-position = Vector2(222, 173)
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=904651461]
+position = Vector2(269, 241)
 emitting = false
-texture = ExtResource("4_eypja")
-explosiveness = 0.32
-randomness = 0.36
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_eypja")
+texture = ExtResource("5_3amuy")
