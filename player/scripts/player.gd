@@ -27,18 +27,6 @@ func _process( _delta ):
 	
 func _physics_process(_delta):
 	move_and_slide()
-	# set player limits TODO: make this get the values instead of hardcoded
-	var margin = 5.0
-	global_position.x = clampf(
-		global_position.x,
-		-600 + margin,
-		3250 - margin
-	)
-	global_position.y = clampf(
-		global_position.y,
-		-350 + margin,
-		2000 - margin
-	)
 	
 	
 func SetDirection() -> bool:

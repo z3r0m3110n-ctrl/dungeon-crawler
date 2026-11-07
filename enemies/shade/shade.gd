@@ -1,24 +1,28 @@
 class_name Shade extends CharacterBody2D
 
-var health : int
+var health : int = 5
+
 var direction : Vector2 = Vector2.ZERO
 var speed = 75
+var thug_wannabe : int = 10 # time in the same direction 
+var random_direction : int = 1
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var shade_sprite: Sprite2D = $Shade
 
 
 func _ready() -> void:
 	health = randi_range(3,7) # set random amount of health
 	$HitBox.Damaged.connect(TakeDamage)
-	#animation_player.play("walk_down")
 	animation_player.play("idle_down")
+	
 	
 func TakeDamage(_damage : int) -> void:
 	health -= 1
 	print("health: ", health)
 	
 	# make the particles explode
-	
 	cpu_particles_2d.amount = 30 #50
 	cpu_particles_2d.scale_amount_min = 0.2
 	cpu_particles_2d.scale_amount_max = 1.0
@@ -43,21 +47,35 @@ func TakeDamage(_damage : int) -> void:
 		queue_free() # he died
 
 func update_direction():
-	velocity.y = speed * 1
-	# set player limits TODO: make this get the values instead of hardcoded
-	var margin = 5.0
-	global_position.x = clampf(
-		global_position.x,
-		-600 + margin,
-		3250 - margin
-	)
-	global_position.y = clampf(
-		global_position.y,
-		-350 + margin,
-		2000 - margin
-	)
+	
+	thug_wannabe -= 1
+	#print("thug_wannabe:", thug_wannabe)
+	if thug_wannabe <= 0: # get new direction
+		thug_wannabe = randi_range (15, 240)
+		random_direction = randi_range (1, 4)
+		
+	if random_direction == 1: # down
+		animation_player.play("walk_down")
+		velocity = speed * Vector2.DOWN 
+		shade_sprite.flip_h = false
+	elif random_direction == 2: # up
+		animation_player.play("walk_up")
+		velocity = speed * Vector2.UP 
+		shade_sprite.flip_h = false
+	elif random_direction == 3: # right
+		animation_player.play("walk_side")
+		velocity = speed * Vector2.RIGHT
+		shade_sprite.flip_h = false
+	elif random_direction == 4: # left
+		animation_player.play("walk_side")
+		velocity = speed * Vector2.LEFT
+		shade_sprite.flip_h = true
+	else:
+		velocity = speed * Vector2.DOWN #  down
+	
 
 func _physics_process(_delta):
 	update_direction()
 	move_and_slide()
+	
 	
