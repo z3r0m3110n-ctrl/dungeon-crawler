@@ -11,9 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://bfps0epmvnjh1" path="res://player/audio/whoosh_1.wav" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://2bw0b6cgxl6r" path="res://player/scripts/playerInteractionsHost.gd" id="10_2ieo8"]
 [ext_resource type="Script" uid="uid://2vurrbppgyix" path="res://generalNodes/hurtBox/hurt_box.gd" id="10_8t03j"]
+[ext_resource type="Script" uid="uid://d27imcddjrt12" path="res://player/scripts/player_camera.gd" id="12_ebec5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d7q6v"]
-radius = 49.497475
+radius = 36.05551
 
 [sub_resource type="Animation" id="Animation_2ieo8"]
 length = 0.001
@@ -354,6 +355,7 @@ max_polyphony = 4
 script = ExtResource("10_2ieo8")
 
 [node name="HurtBox" type="Area2D" parent="Interactions" unique_id=1167063554]
+position = Vector2(545, 262)
 collision_layer = 0
 collision_mask = 256
 monitoring = false
@@ -361,6 +363,13 @@ script = ExtResource("10_8t03j")
 metadata/_custom_type_script = "uid://2vurrbppgyix"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox" unique_id=22834614]
-position = Vector2(549, 297)
+position = Vector2(17, 38)
 shape = SubResource("CircleShape2D_ef5j6")
 debug_color = Color(0.7303774, 0.16667664, 0.28575525, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1737006512]
+position = Vector2(549, 287)
+script = ExtResource("12_ebec5")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1079940800]
+position = Vector2(548, 270)

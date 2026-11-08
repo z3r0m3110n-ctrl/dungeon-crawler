@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c6nksswe8k06x" path="res://enemies/audio/hiss.wav" id="6_st52h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0osc"]
-size = Vector2(35, 77)
+size = Vector2(50, 92)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7q6v"]
 size = Vector2(75, 142)
@@ -227,25 +227,25 @@ _data = {
 
 [node name="Shade" type="CharacterBody2D" unique_id=1663971825]
 collision_layer = 256
+collision_mask = 17
 script = ExtResource("1_0ufoh")
 
 [node name="Shade" type="Sprite2D" parent="." unique_id=2000197209]
-position = Vector2(266, 262)
+position = Vector2(-3, 11)
 scale = Vector2(2, 2)
 texture = ExtResource("2_0ufoh")
 hframes = 16
 vframes = 8
 frame = 113
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=609696778]
-position = Vector2(262.5, 250.5)
+position = Vector2(-1, 16)
 shape = SubResource("RectangleShape2D_i0osc")
 
 [node name="HitBox" parent="." unique_id=752617987 instance=ExtResource("2_i0osc")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=512341437]
-position = Vector2(270, 259)
+position = Vector2(2.5, 8)
 shape = SubResource("RectangleShape2D_d7q6v")
 debug_color = Color(0.90566784, 0.2678384, 0.38101792, 0.41960785)
 
@@ -253,7 +253,7 @@ debug_color = Color(0.90566784, 0.2678384, 0.38101792, 0.41960785)
 libraries/ = SubResource("AnimationLibrary_st52h")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=904651461]
-position = Vector2(269, 241)
+position = Vector2(1.5, -10)
 emitting = false
 texture = ExtResource("5_3amuy")
 

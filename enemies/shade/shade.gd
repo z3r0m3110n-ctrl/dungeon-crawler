@@ -11,7 +11,16 @@ enum ShadeState  {
 	CHASING,
 	ATTACKING
 } 
+
+enum Facing {
+	DOWN,
+	UP,
+	RIGHT,
+	LEFT
+}
+
 var current_state : ShadeState = ShadeState.WANDERING
+var current_facing : Facing = Facing.DOWN
 
 var health : int = 5
 var in_danger : bool = false
@@ -25,10 +34,11 @@ var thug_wannabe : int = 10 # time in the same direction
 var random_direction : int = 1
 var animation_state : String = "idle"
 
-var monster_sight = 500 #300 # This is how far the enemy will see the player.
+
+var monster_sight = 400 #300 # This is how far the enemy will see the player.
 var the_prey_is_in_sight : bool = false
 
-
+var target_position = Vector2.ZERO # drawing debug line
 
 var hiss_sound = preload("res://enemies/audio/hiss.wav")
 
@@ -50,7 +60,7 @@ func _ready() -> void:
 	
 func TakeDamage(_damage : int) -> void:
 	health -= 1
-	print("health: ", health)
+	print(name ," health: ", health)
 	
 	# make the particles explode
 	cpu_particles_2d.amount = 30 #50
@@ -87,34 +97,44 @@ func _physics_process(_delta):
 	if player == null:
 		current_state = ShadeState.WANDERING
 	
-	var distance_to_player = global_position.distance_to(player.global_position)
-	print("Distance: ", distance_to_player)
-	if current_state == ShadeState.WANDERING: # stop this guy from flipping around
-		if distance_to_player < monster_sight: 
-			current_state = ShadeState.CHASING
-	elif current_state == ShadeState.CHASING:
-			if distance_to_player > monster_sight + 50: 
-				current_state = ShadeState.WANDERING
+	else:
+		var distance_to_player = global_position.distance_to(player.get_node("Sprite2D").global_position)
+		#print("Distance: ", distance_to_player))
 	
-	update_direction()
-	move_and_slide()
+		if current_state == ShadeState.WANDERING: 
+			if distance_to_player < monster_sight: 
+				current_state = ShadeState.CHASING
+		elif current_state == ShadeState.CHASING:
+				if distance_to_player > monster_sight + 100: # stop this guy from flipping around
+					current_state = ShadeState.WANDERING
 	
+	if not in_danger:
+		update_direction()
+		move_and_slide()
+	
+	#if player != null: # this is just for testing
+		#target_position = to_local(player.get_node("Sprite2D").global_position)
+		#queue_redraw()
+
 	if get_slide_collision_count() > 0: # this should be attacking, but run away for now
-		thug_wannabe = 0 # get a new random direction
 		var collided_with = get_slide_collision(0)
-		#print("collided_with: ", collided_with.get_collider().name) 
+		print("collided_with: ", collided_with.get_collider().name) 
 		if collided_with.get_collider().name == "Player": # play a hissing sound if the player is there
 			audio.stream = hiss_sound
 			audio.pitch_scale = randf_range (0.5, 1.5)
 			audio.play() 
 			in_danger = true # in danger - be fast, don't idle
-			# wait 10 seconds to see if safe
-			await get_tree().create_timer(10.0).timeout
+			# wait to see if safe
+			await get_tree().create_timer(0.5).timeout
 			in_danger = false
+		else: # collided with an object 
+			thug_wannabe = 0 # get a new random direction if wandering
 			
+
+		
 			
 func wandering(): 	
-	print("wandering")
+	#print("wandering")
 	thug_wannabe -= 1
 	#print("thug_wannabe:", thug_wannabe)
 	if thug_wannabe <= 0: # get new direction
@@ -131,49 +151,84 @@ func wandering():
 			animation_state = "walk"
 			speed = speed_walk
 		
-		if in_danger: # need to run
-			animation_state = "walk"
-			speed = speed_danger
+		#if in_danger: # need to run
+			#animation_state = "walk"
+			#speed = speed_danger
 	
 	shade_sprite.flip_h = false	
 	if random_direction == 1: # down
+		current_facing = Facing.DOWN
 		animation_player.play(animation_state + "_down")
 		velocity = speed * Vector2.DOWN 
 	elif random_direction == 2: # up
+		current_facing = Facing.UP
 		animation_player.play(animation_state + "_up")
 		velocity = speed * Vector2.UP 
 	elif random_direction == 3: # right
+		current_facing = Facing.RIGHT
 		animation_player.play(animation_state + "_side")
 		velocity = speed * Vector2.RIGHT
 	elif random_direction == 4: # left
+		current_facing = Facing.LEFT
 		animation_player.play(animation_state + "_side")
 		velocity = speed * Vector2.LEFT
 		shade_sprite.flip_h = true
 	else:
+		current_facing = Facing.DOWN
 		velocity = speed * Vector2.DOWN #  down
 
 func chasing():
 	animation_state = "walk"
 	speed = speed_danger
 	
-	direction = global_position.direction_to(player.global_position)
-	print("direction: ", direction)
+	direction = global_position.direction_to(player.get_node("Sprite2D").global_position)
+	#print("direction: ", direction)
+	
+	
 	
 	shade_sprite.flip_h = false
-	if abs(direction.x) > abs(direction.y): # mostly moving left or right
-		if direction.x < 0:
-			print("chasing left")
+	if abs(direction.y) > abs(direction.x) * 1.1: # mostly moving up or down
+		if direction.y < 0: 
+			#print("chasing up")
+			current_facing = Facing.UP
+			animation_player.play(animation_state + "_up")
+			velocity = speed * Vector2.UP
+		else: 
+			#print("chasing down")
+			current_facing = Facing.DOWN
+			velocity = speed * Vector2.DOWN
+			animation_player.play(animation_state + "_down")
+
+	if abs(direction.x) > abs(direction.y) * 1.1: # moving left or right
+		if direction.x < 0: 
+			#print("chasing left")
+			current_facing = Facing.LEFT
+			animation_player.play(animation_state + "_side")
 			velocity = speed * Vector2.LEFT
 			shade_sprite.flip_h = true
-		else:
-			print("chasing right")
-			animation_player.play(animation_state + "_side")
+		else: 
+			#print("chasing right")
+			current_facing = Facing.RIGHT
 			velocity = speed * Vector2.RIGHT
-	elif direction.y > 0: # mostly moving down
-		print("chasing down")
-		velocity = speed * Vector2.DOWN 
-		animation_player.play(animation_state + "_down")
-	else:
-		print("chasing up")
-		animation_player.play(animation_state + "_up")
-		velocity = speed * Vector2(direction.x, direction.y)
+			animation_player.play(animation_state + "_side")
+				
+				
+#func _draw():
+	## Figure out what is going on with the movement
+	## Leave this for now in case things mess up again
+	## Circle at enemy
+	#draw_circle(Vector2.ZERO, 5.0, Color.RED)
+	## Draw line towards player
+	#draw_line(
+		#Vector2.ZERO,
+		#target_position,
+		#Color.GREEN,
+		#2.0
+	#)
+	## Circle at player
+	#draw_circle(
+		#target_position,
+		#5.0,
+		#Color.GREEN
+	#)
+	#
