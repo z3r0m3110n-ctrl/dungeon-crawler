@@ -39,3 +39,9 @@ position = Vector2(1366, 145)
 
 [node name="Shade" parent="." unique_id=1663971825 instance=ExtResource("5_o00ia")]
 position = Vector2(1027, 834)
+
+[node name="Shade2" parent="." unique_id=2110099901 instance=ExtResource("5_o00ia")]
+position = Vector2(3339, 1949)
+
+[node name="Shade3" parent="." unique_id=499919608 instance=ExtResource("5_o00ia")]
+position = Vector2(2108, 1294)

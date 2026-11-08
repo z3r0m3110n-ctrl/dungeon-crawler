@@ -118,7 +118,7 @@ func _physics_process(_delta):
 
 	if get_slide_collision_count() > 0: # this should be attacking, but run away for now
 		var collided_with = get_slide_collision(0)
-		print("collided_with: ", collided_with.get_collider().name) 
+		#print("collided_with: ", collided_with.get_collider().name) 
 		if collided_with.get_collider().name == "Player": # play a hissing sound if the player is there
 			audio.stream = hiss_sound
 			audio.pitch_scale = randf_range (0.5, 1.5)
