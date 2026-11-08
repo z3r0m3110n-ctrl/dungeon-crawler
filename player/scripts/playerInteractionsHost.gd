@@ -25,17 +25,3 @@ func UpdateDirection(new_direction : Vector2) -> void:
 		position = Vector2(30,-40)
 	else: 
 		position = Vector2(0, 10)
-#	
-	#match new_direction:
-	#	Vector2.DOWN:
-	#		print("down")
-	#		rotation_degrees = 0
-	#	Vector2.UP:
-	#		print("up")
-	#		rotation_degrees = 90
-	#	#Vector2.LEFT:
-	#	#	rotation_degrees = 90
-	#	#Vector2.RIGHT:
-	#	#	rotation_degrees = 270
-	#	_:
-	#		rotation_degrees = 0

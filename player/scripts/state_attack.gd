@@ -11,6 +11,7 @@ var attacking : bool = false
 @onready var audio: AudioStreamPlayer2D = $"../../AudioStreamPlayer2D"
 @onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
 
+
 ## What happens when the player enters this State?
 func Enter() -> void:
 	player.UpdateAnimation("attack")

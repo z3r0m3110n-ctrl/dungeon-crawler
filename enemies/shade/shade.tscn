@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b2hyhv1hxliah" path="res://generalNodes/hitBox/hit_box.tscn" id="2_i0osc"]
 [ext_resource type="Texture2D" uid="uid://6vo3su65jkff" path="res://enemies/sprites/Shade_Walk.png" id="4_3amuy"]
 [ext_resource type="Texture2D" uid="uid://bix4ntt5ln7fr" path="res://Tile Maps/particles/blast.png" id="5_3amuy"]
+[ext_resource type="AudioStream" uid="uid://c6nksswe8k06x" path="res://enemies/audio/hiss.wav" id="6_st52h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0osc"]
 size = Vector2(35, 77)
@@ -255,3 +256,6 @@ libraries/ = SubResource("AnimationLibrary_st52h")
 position = Vector2(269, 241)
 emitting = false
 texture = ExtResource("5_3amuy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=157811207]
+stream = ExtResource("6_st52h")

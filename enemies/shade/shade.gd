@@ -1,15 +1,23 @@
 class_name Shade extends CharacterBody2D
 
 var health : int = 5
+var in_danger : bool = false
 
 var direction : Vector2 = Vector2.ZERO
-var speed = 75
+var speed_walk : int = 75
+var speed_idle : int = 0
+var speed_danger : int = 200
+var speed : int = 0
 var thug_wannabe : int = 10 # time in the same direction 
 var random_direction : int = 1
+var animation_state : String = "idle"
+
+var hiss_sound = preload("res://enemies/audio/hiss.wav")
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var shade_sprite: Sprite2D = $Shade
+@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 func _ready() -> void:
@@ -51,23 +59,37 @@ func update_direction():
 	thug_wannabe -= 1
 	#print("thug_wannabe:", thug_wannabe)
 	if thug_wannabe <= 0: # get new direction
-		thug_wannabe = randi_range (15, 240)
+		thug_wannabe = randi_range (50, 320)
 		random_direction = randi_range (1, 4)
+		if randf() < 0.4: # sometimes walk, sometimes idle
+			animation_state = "idle"
+			speed = speed_idle
+			if randf() < 0.2: # sometimes the shade will make an ugly hiss
+				audio.stream = hiss_sound
+				audio.pitch_scale = randf_range (0.5, 1.5)
+				audio.play() 
+		else:
+			animation_state = "walk"
+			speed = speed_walk
+		
+		if in_danger: # need to run
+			animation_state = "walk"
+			speed = speed_danger
 		
 	if random_direction == 1: # down
-		animation_player.play("walk_down")
+		animation_player.play(animation_state + "_down")
 		velocity = speed * Vector2.DOWN 
 		shade_sprite.flip_h = false
 	elif random_direction == 2: # up
-		animation_player.play("walk_up")
+		animation_player.play(animation_state + "_up")
 		velocity = speed * Vector2.UP 
 		shade_sprite.flip_h = false
 	elif random_direction == 3: # right
-		animation_player.play("walk_side")
+		animation_player.play(animation_state + "_side")
 		velocity = speed * Vector2.RIGHT
 		shade_sprite.flip_h = false
 	elif random_direction == 4: # left
-		animation_player.play("walk_side")
+		animation_player.play(animation_state + "_side")
 		velocity = speed * Vector2.LEFT
 		shade_sprite.flip_h = true
 	else:
@@ -77,5 +99,15 @@ func update_direction():
 func _physics_process(_delta):
 	update_direction()
 	move_and_slide()
+	if get_slide_collision_count() > 0:
+		thug_wannabe = 0 # get a new random direction
+		var collided_with = get_slide_collision(0)
+		#print("collided_with: ", collided_with.get_collider().name) 
+		if collided_with.get_collider().name == "Player": # play a hissing sound if the player is there
+			in_danger = true
+			audio.stream = hiss_sound
+			audio.pitch_scale = randf_range (0.5, 1.5)
+			audio.play() 
+			
 	
 	
