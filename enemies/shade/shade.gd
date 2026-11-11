@@ -48,6 +48,9 @@ var player : Node2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var shade_sprite: Sprite2D = $Shade
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var attack_timer: Timer = $AttackTimer
+@onready var hit_box: HitBox = $HitBox
+
 
 
 func _ready() -> void:
@@ -111,7 +114,7 @@ func _physics_process(_delta):
 	if not in_danger:
 		update_direction()
 		move_and_slide()
-	
+		
 	#if player != null: # this is just for testing
 		#target_position = to_local(player.get_node("Sprite2D").global_position)
 		#queue_redraw()
@@ -119,11 +122,16 @@ func _physics_process(_delta):
 	if get_slide_collision_count() > 0: # this should be attacking, but run away for now
 		var collided_with = get_slide_collision(0)
 		#print("collided_with: ", collided_with.get_collider().name) 
-		if collided_with.get_collider().name == "Player": # play a hissing sound if the player is there
+		if collided_with.get_collider().name == "Player": 
+			
+			attack() 
+			
+			# TODO: remove the danger and noise after collisiion with player
+			# play a hissing sound if the player is there
 			audio.stream = hiss_sound
 			audio.pitch_scale = randf_range (0.5, 1.5)
 			audio.play() 
-			in_danger = true # in danger - be fast, don't idle
+			in_danger = true # beat the he
 			# wait to see if safe
 			await get_tree().create_timer(0.5).timeout
 			in_danger = false
@@ -231,4 +239,25 @@ func chasing():
 		#5.0,
 		#Color.GREEN
 	#)
-	#
+	
+func attack ():
+	speed = speed_idle
+	shade_sprite.flip_h = false
+	if current_facing == Facing.UP:
+		animation_player.play("idle_up")
+		velocity = speed * Vector2.UP
+	elif current_facing == Facing.LEFT:
+		animation_player.play("idle_side")
+		velocity = speed * Vector2.LEFT
+		shade_sprite.flip_h = true
+	elif current_facing == Facing.RIGHT:
+		velocity = speed * Vector2.RIGHT
+		animation_player.play("idle_side")
+	elif current_facing == Facing.DOWN:
+		velocity = speed * Vector2.DOWN
+		animation_player.play("idle_down")
+	
+	#await get_tree().create_timer(1).timeout
+	if player != null and attack_timer.is_stopped(): #don't attack the player if he's dead
+		player.GetHurt(5)
+		attack_timer.start()

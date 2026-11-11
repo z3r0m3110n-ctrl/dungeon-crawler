@@ -10,3 +10,4 @@ func _ready() -> void:
 func TakeDamage(damage : int) -> void:
 	print("Take damage: ", damage) # amount of damage
 	Damaged.emit(damage)
+	

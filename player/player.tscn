@@ -318,6 +318,7 @@ _data = {
 radius = 42.72002
 
 [node name="Player" type="CharacterBody2D" unique_id=1161850489 groups=["Player"]]
+collision_mask = 17
 script = ExtResource("1_rkbax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=954061570]
