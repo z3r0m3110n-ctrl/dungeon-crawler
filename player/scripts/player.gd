@@ -2,6 +2,8 @@ class_name Player extends CharacterBody2D
 
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
+
+@export var max_health: int = 100
 var health : int = 100
  
 
@@ -9,8 +11,10 @@ var health : int = 100
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var state_machine : PlayerStateMachine = $StateMachine
 @onready var tile_map: LevelTileMap = $"../Grass01"
+@export var maxhealth : int = 100
 
 signal DirectionChanged(new_direction : Vector2)
+signal HealthChanged()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,6 +67,6 @@ func AnimDirection() -> String:
 func GetHurt(damage : int) -> void:
 	health  -= damage
 	print ("PlayerHealth", health)
-	
+	HealthChanged.emit()
 	if health == 0:
 		queue_free() # the hero has been vanquished

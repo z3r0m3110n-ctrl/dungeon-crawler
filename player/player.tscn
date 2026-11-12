@@ -322,11 +322,11 @@ collision_mask = 17
 script = ExtResource("1_rkbax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=954061570]
-position = Vector2(546, 255)
+position = Vector2(10, -22)
 shape = SubResource("CircleShape2D_d7q6v")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=850518011]
-position = Vector2(543, 260)
+position = Vector2(13, -11)
 scale = Vector2(2, 2)
 texture = ExtResource("2_qjkh3")
 hframes = 15
@@ -356,7 +356,7 @@ max_polyphony = 4
 script = ExtResource("10_2ieo8")
 
 [node name="HurtBox" type="Area2D" parent="Interactions" unique_id=1167063554]
-position = Vector2(545, 262)
+position = Vector2(9, -15)
 collision_layer = 0
 collision_mask = 256
 monitoring = false
@@ -369,8 +369,5 @@ shape = SubResource("CircleShape2D_ef5j6")
 debug_color = Color(0.7303774, 0.16667664, 0.28575525, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1737006512]
-position = Vector2(549, 287)
+position = Vector2(1, 1)
 script = ExtResource("12_ebec5")
-
-[node name="Marker2D" type="Marker2D" parent="." unique_id=1079940800]
-position = Vector2(548, 270)

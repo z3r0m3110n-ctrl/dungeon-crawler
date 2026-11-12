@@ -119,7 +119,7 @@ func _physics_process(_delta):
 		#target_position = to_local(player.get_node("Sprite2D").global_position)
 		#queue_redraw()
 
-	if get_slide_collision_count() > 0: # this should be attacking, but run away for now
+	if get_slide_collision_count() > 0: 
 		var collided_with = get_slide_collision(0)
 		#print("collided_with: ", collided_with.get_collider().name) 
 		if collided_with.get_collider().name == "Player": 
@@ -128,16 +128,16 @@ func _physics_process(_delta):
 			
 			# TODO: remove the danger and noise after collisiion with player
 			# play a hissing sound if the player is there
-			audio.stream = hiss_sound
-			audio.pitch_scale = randf_range (0.5, 1.5)
-			audio.play() 
+			#audio.stream = hiss_sound
+			#audio.pitch_scale = randf_range (0.5, 1.5)
+			#audio.play() 
 			in_danger = true # beat the he
 			# wait to see if safe
 			await get_tree().create_timer(0.5).timeout
 			in_danger = false
 		else: # collided with an object 
 			thug_wannabe = 0 # get a new random direction if wandering
-			
+				
 
 		
 			
@@ -166,21 +166,20 @@ func wandering():
 	shade_sprite.flip_h = false	
 	if random_direction == 1: # down
 		current_facing = Facing.DOWN
-		animation_player.play(animation_state + "_down")
-		velocity = speed * Vector2.DOWN 
+		update_animation()
+
 	elif random_direction == 2: # up
 		current_facing = Facing.UP
-		animation_player.play(animation_state + "_up")
-		velocity = speed * Vector2.UP 
+		update_animation()
+
 	elif random_direction == 3: # right
 		current_facing = Facing.RIGHT
-		animation_player.play(animation_state + "_side")
-		velocity = speed * Vector2.RIGHT
+		update_animation()
+
 	elif random_direction == 4: # left
 		current_facing = Facing.LEFT
-		animation_player.play(animation_state + "_side")
-		velocity = speed * Vector2.LEFT
-		shade_sprite.flip_h = true
+		update_animation()
+
 	else:
 		current_facing = Facing.DOWN
 		velocity = speed * Vector2.DOWN #  down
@@ -194,31 +193,27 @@ func chasing():
 	
 	
 	
-	shade_sprite.flip_h = false
+	#shade_sprite.flip_h = false
 	if abs(direction.y) > abs(direction.x) * 1.1: # mostly moving up or down
 		if direction.y < 0: 
 			#print("chasing up")
 			current_facing = Facing.UP
-			animation_player.play(animation_state + "_up")
-			velocity = speed * Vector2.UP
+			update_animation()
 		else: 
 			#print("chasing down")
 			current_facing = Facing.DOWN
-			velocity = speed * Vector2.DOWN
-			animation_player.play(animation_state + "_down")
+			update_animation()
 
 	if abs(direction.x) > abs(direction.y) * 1.1: # moving left or right
 		if direction.x < 0: 
 			#print("chasing left")
 			current_facing = Facing.LEFT
-			animation_player.play(animation_state + "_side")
-			velocity = speed * Vector2.LEFT
-			shade_sprite.flip_h = true
+			update_animation()
+
 		else: 
 			#print("chasing right")
 			current_facing = Facing.RIGHT
-			velocity = speed * Vector2.RIGHT
-			animation_player.play(animation_state + "_side")
+			update_animation()
 				
 				
 #func _draw():
@@ -242,22 +237,29 @@ func chasing():
 	
 func attack ():
 	speed = speed_idle
-	shade_sprite.flip_h = false
-	if current_facing == Facing.UP:
-		animation_player.play("idle_up")
-		velocity = speed * Vector2.UP
-	elif current_facing == Facing.LEFT:
-		animation_player.play("idle_side")
-		velocity = speed * Vector2.LEFT
-		shade_sprite.flip_h = true
-	elif current_facing == Facing.RIGHT:
-		velocity = speed * Vector2.RIGHT
-		animation_player.play("idle_side")
-	elif current_facing == Facing.DOWN:
-		velocity = speed * Vector2.DOWN
-		animation_player.play("idle_down")
+	#shade_sprite.flip_h = false
+	animation_state = "idle"
+	update_animation()
 	
 	#await get_tree().create_timer(1).timeout
 	if player != null and attack_timer.is_stopped(): #don't attack the player if he's dead
 		player.GetHurt(5)
 		attack_timer.start()
+		
+		
+func update_animation():
+	shade_sprite.flip_h = false
+	if current_facing == Facing.UP:
+		animation_player.play(animation_state + "_up")
+		velocity = speed * Vector2.UP
+	elif current_facing == Facing.LEFT:
+		animation_player.play(animation_state + "_side")
+		velocity = speed * Vector2.LEFT
+		shade_sprite.flip_h = true
+	elif current_facing == Facing.RIGHT:
+		velocity = speed * Vector2.RIGHT
+		animation_player.play(animation_state + "_side")
+	elif current_facing == Facing.DOWN:
+		velocity = speed * Vector2.DOWN
+		animation_player.play(animation_state + "_down")
+	
