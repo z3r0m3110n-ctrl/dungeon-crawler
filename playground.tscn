@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cvv6ld2e1yqpi" path="res://props/barrels/barrel.tscn" id="4_is3ju"]
 [ext_resource type="PackedScene" uid="uid://dsvh5ii4i0r1y" path="res://enemies/shade/shade.tscn" id="5_o00ia"]
 [ext_resource type="Script" uid="uid://b5j25whqnypnh" path="res://player/scripts/health_bar.gd" id="6_4bqqs"]
+[ext_resource type="FontFile" uid="uid://b5sreudmht8ri" path="res://fonts/GrimoireOfDeath-Regular.ttf" id="6_v7dth"]
+[ext_resource type="Texture2D" uid="uid://dj63pxyho0aju" path="res://props/sprites/blood-drop.png" id="7_ynsuh"]
 
 [sub_resource type="Theme" id="Theme_4bqqs"]
 
@@ -65,17 +67,25 @@ offset_left = -2.5600014
 offset_top = -0.08800125
 offset_right = 223.44
 offset_bottom = 26.911999
+tooltip_text = "Health"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("6_v7dth")
+theme_override_font_sizes/font_size = 22
 step = 1.0
 value = 100.0
 script = ExtResource("6_4bqqs")
+
+[node name="BarBlood" type="CPUParticles2D" parent="HUD/HealthBar" unique_id=1645591911]
+emitting = false
+texture = ExtResource("7_ynsuh")
 
 [node name="Marker2D" type="Marker2D" parent="HUD" unique_id=19758655]
 position = Vector2(12, -7)
 
 [node name="ColorRect" type="ColorRect" parent="HUD/Marker2D" unique_id=1540598544]
-offset_left = 20.0
-offset_top = 28.0
-offset_right = 244.0
-offset_bottom = 55.0
+offset_left = 21.0
+offset_top = 27.0
+offset_right = 245.0
+offset_bottom = 54.0
 theme = SubResource("Theme_4bqqs")
 color = Color(0.8912906, 4.1873755e-06, 8.663535e-07, 1)
