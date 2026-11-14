@@ -227,7 +227,7 @@ _data = {
 
 [node name="Shade" type="CharacterBody2D" unique_id=1663971825]
 collision_layer = 256
-collision_mask = 273
+collision_mask = 17
 script = ExtResource("1_0ufoh")
 
 [node name="Shade" type="Sprite2D" parent="." unique_id=2000197209]

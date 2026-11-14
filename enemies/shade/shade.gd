@@ -34,6 +34,8 @@ var thug_wannabe : int = 10 # time in the same direction
 var random_direction : int = 1
 var animation_state : String = "idle"
 
+var hit_damage : int = 5 # how much damagae the sprite does when it hits the player
+
 
 var monster_sight = 400 #300 # This is how far the enemy will see the player.
 var the_prey_is_in_sight : bool = false
@@ -115,10 +117,13 @@ func _physics_process(_delta):
 		update_direction()
 		move_and_slide()
 		
+		
 	#if player != null: # this is just for testing
 		#target_position = to_local(player.get_node("Sprite2D").global_position)
 		#queue_redraw()
 
+	# TODO: Collision count isn't working. Find another way to check if shade is
+	# touching the player
 	if get_slide_collision_count() > 0: 
 		var collided_with = get_slide_collision(0)
 		#print("collided_with: ", collided_with.get_collider().name) 
@@ -128,9 +133,9 @@ func _physics_process(_delta):
 			
 			# TODO: remove the danger and noise after collisiion with player
 			# play a hissing sound if the player is there
-			#audio.stream = hiss_sound
-			#audio.pitch_scale = randf_range (0.5, 1.5)
-			#audio.play() 
+			audio.stream = hiss_sound
+			audio.pitch_scale = randf_range (0.5, 1.5)
+			audio.play() 
 			in_danger = true # beat the he
 			# wait to see if safe
 			await get_tree().create_timer(0.5).timeout
@@ -237,13 +242,12 @@ func chasing():
 	
 func attack ():
 	speed = speed_idle
-	#shade_sprite.flip_h = false
 	animation_state = "idle"
 	update_animation()
 	
 	#await get_tree().create_timer(1).timeout
 	if player != null and attack_timer.is_stopped(): #don't attack the player if he's dead
-		player.GetHurt(5)
+		player.GetHurt(hit_damage)
 		attack_timer.start()
 		
 		

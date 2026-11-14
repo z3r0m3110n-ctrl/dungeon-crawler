@@ -13,7 +13,8 @@ func update():
 	value = round((player.health* 100) / player.max_health)
 	# show the dripping blood effect
 	bar_blood.one_shot = true
-	bar_blood.amount = 5
+	bar_blood.amount = 10
+	bar_blood.spread = 90
 	bar_blood.scale_amount_min = 0.5
 	bar_blood.scale_amount_max = 0.8
 	bar_blood.lifetime = 0.5 # make this number bigger for a longer drip
