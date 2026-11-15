@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dccjatunu6f8e"]
 
 [ext_resource type="Script" uid="uid://c4mjawrosyu8" path="res://UI/game_over.gd" id="1_kjexa"]
+[ext_resource type="Texture2D" uid="uid://bamb6ipm8rtcc" path="res://Tile Maps/Sprites/gameover-background.png" id="2_3pwoa"]
 [ext_resource type="FontFile" uid="uid://b5sreudmht8ri" path="res://fonts/GrimoireOfDeath-Regular.ttf" id="2_vjbsa"]
+[ext_resource type="FontFile" uid="uid://bdsbgrsv8ycbk" path="res://fonts/GrimoireOfDeath-Italic.ttf" id="4_dy830"]
 
 [node name="GameOver" type="Node2D" unique_id=17394312]
 process_mode = 2
@@ -13,38 +15,51 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_kjexa")
 
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1468445369]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 1151.0
+offset_bottom = 651.0
+texture = ExtResource("2_3pwoa")
+
 [node name="ColorRect" type="ColorRect" parent="Control" unique_id=660528526]
+visible = false
 layout_mode = 0
 offset_right = 1156.0
 offset_bottom = 645.0
 
 [node name="GameOverLabel" type="Label" parent="Control" unique_id=2002687613]
 layout_mode = 0
-offset_left = 323.0
-offset_top = 91.0
-offset_right = 812.0
-offset_bottom = 160.0
+offset_left = 239.0
+offset_top = 24.0
+offset_right = 842.0
+offset_bottom = 128.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_vjbsa")
-theme_override_font_sizes/font_size = 71
+theme_override_font_sizes/font_size = 103
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Restart" type="Button" parent="Control" unique_id=352016896]
 layout_mode = 1
-offset_left = 390.0
-offset_top = 232.0
-offset_right = 750.0
-offset_bottom = 291.0
+offset_left = 752.0
+offset_top = 215.0
+offset_right = 1112.0
+offset_bottom = 274.0
+theme_override_fonts/font = ExtResource("4_dy830")
+theme_override_font_sizes/font_size = 30
 text = "Play Again"
 
 [node name="Exit" type="Button" parent="Control" unique_id=1508676359]
 layout_mode = 0
-offset_left = 390.0
-offset_top = 311.0
-offset_right = 749.0
-offset_bottom = 369.0
+offset_left = 753.0
+offset_top = 290.0
+offset_right = 1112.0
+offset_bottom = 348.0
+theme_override_fonts/font = ExtResource("4_dy830")
+theme_override_font_sizes/font_size = 30
 text = "Exit"
 
 [connection signal="pressed" from="Control/Restart" to="Control" method="_on_restart_pressed"]

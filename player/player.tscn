@@ -320,8 +320,6 @@ radius = 42.72002
 [node name="Player" type="CharacterBody2D" unique_id=1161850489 groups=["Player"]]
 collision_mask = 17
 script = ExtResource("1_rkbax")
-max_health = null
-maxhealth = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=954061570]
 position = Vector2(10, -22)

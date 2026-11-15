@@ -5,7 +5,10 @@ var direction : Vector2 = Vector2.ZERO
 
 @export var max_health: int = 100
 var health : int = 100
- 
+var limit_left : int = 0
+var limit_right : int = 0
+var limit_top : int = 0
+var limit_bottom : int = 0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
@@ -19,6 +22,7 @@ signal HealthChanged()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	state_machine.Initialize(self)
+	LevelManager.TileMapBoundsChanged.connect(UpdateLimits)
 	
 	
 
@@ -34,23 +38,10 @@ func _process( _delta ):
 func _physics_process(_delta):
 	move_and_slide()
 	
-	# Get tilemap boundaries
-	var used_rect = tilemap.get_used_rect()
-	var tile_size = tilemap.tile_set.tile_size
-	
-	var margin = 15
-
-	var min_pos = tilemap.to_global(
-		Vector2(used_rect.position * tile_size)
-	)
-
-	var max_pos = tilemap.to_global(
-		Vector2((used_rect.position + used_rect.size) * tile_size)
-	)
-
-	# Keep player inside boundaries
-	global_position.x = clamp(global_position.x, min_pos.x + margin, max_pos.x - margin)
-	global_position.y = clamp(global_position.y, min_pos.y + margin, max_pos.y - margin)
+	# Keep the player on the grass tileset
+	var margin = 50 # add a margin to the boundary
+	global_position.x = clamp(global_position.x, limit_left + margin, limit_right - margin)
+	global_position.y = clamp(global_position.y, limit_top + margin, limit_bottom - margin)
 	
 func SetDirection() -> bool:
 	var new_dir : Vector2 = cardinal_direction
@@ -91,3 +82,10 @@ func GetHurt(damage : int) -> void:
 		get_parent().GameOver()
 		#queue_free()
 	
+func UpdateLimits(bounds : Array[Vector2]) -> void:
+	if bounds == []:
+		return # there are no bounds
+	limit_left = int(bounds[0].x)
+	limit_top = int(bounds[0].y)
+	limit_right = int(bounds[1].x)
+	limit_bottom = int(bounds[1].y)
