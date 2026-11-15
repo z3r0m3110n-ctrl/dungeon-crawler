@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ddxxpb17588ha" path="res://props/sprites/barrel.png" id="1_7adxc"]
 [ext_resource type="Script" uid="uid://duvc713t5fg8e" path="res://props/barrels/barrel.gd" id="1_bwx6y"]
 [ext_resource type="PackedScene" uid="uid://b2hyhv1hxliah" path="res://generalNodes/hitBox/hit_box.tscn" id="2_bwx6y"]
+[ext_resource type="Texture2D" uid="uid://5fdtduat7nfi" path="res://props/sprites/shadow.png" id="3_hwonp"]
 [ext_resource type="AudioStream" uid="uid://iewp5mokpxxd" path="res://props/barrels/barrelbreak.wav" id="4_3vre4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7q6v"]
@@ -12,22 +13,34 @@ size = Vector2(49, 49)
 script = ExtResource("1_bwx6y")
 
 [node name="Barrel" type="Sprite2D" parent="." unique_id=799649595]
+z_index = 1
 position = Vector2(1, 0)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_7adxc")
 
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1284388415]
+position = Vector2(3.0000005, 6.9999995)
+scale = Vector2(1.5, 1.2621951)
+texture = ExtResource("3_hwonp")
+
 [node name="HitBox" parent="." unique_id=752617987 instance=ExtResource("2_bwx6y")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1061061304]
+visible = false
 position = Vector2(-1.5, 6)
 shape = SubResource("RectangleShape2D_d7q6v")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=413570533]
-collision_mask = 0
+visible = false
+collision_layer = 16
+collision_mask = 257
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1042238830]
+visible = false
 position = Vector2(-2, 7)
 shape = SubResource("RectangleShape2D_d7q6v")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1105120859]
+visible = false
 stream = ExtResource("4_3vre4")

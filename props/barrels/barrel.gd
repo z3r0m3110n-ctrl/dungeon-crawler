@@ -13,3 +13,7 @@ func TakeDamage(_damage : int) -> void:
 	audio.play() 
 	await audio.finished
 	queue_free()
+
+
+	
+	

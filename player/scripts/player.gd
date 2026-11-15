@@ -10,7 +10,7 @@ var health : int = 100
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var state_machine : PlayerStateMachine = $StateMachine
-@onready var tile_map: LevelTileMap = $"../Grass01"
+@onready var tilemap: LevelTileMap = $"../Environment/Grass"
 @export var maxhealth : int = 100
 
 signal DirectionChanged(new_direction : Vector2)
@@ -19,6 +19,7 @@ signal HealthChanged()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	state_machine.Initialize(self)
+	
 	
 
 
@@ -33,6 +34,23 @@ func _process( _delta ):
 func _physics_process(_delta):
 	move_and_slide()
 	
+	# Get tilemap boundaries
+	var used_rect = tilemap.get_used_rect()
+	var tile_size = tilemap.tile_set.tile_size
+	
+	var margin = 15
+
+	var min_pos = tilemap.to_global(
+		Vector2(used_rect.position * tile_size)
+	)
+
+	var max_pos = tilemap.to_global(
+		Vector2((used_rect.position + used_rect.size) * tile_size)
+	)
+
+	# Keep player inside boundaries
+	global_position.x = clamp(global_position.x, min_pos.x + margin, max_pos.x - margin)
+	global_position.y = clamp(global_position.y, min_pos.y + margin, max_pos.y - margin)
 	
 func SetDirection() -> bool:
 	var new_dir : Vector2 = cardinal_direction
@@ -64,9 +82,12 @@ func AnimDirection() -> String:
 	else:
 		return "side"
 
+
 func GetHurt(damage : int) -> void:
 	health  -= damage
 	print ("PlayerHealth", health)
 	HealthChanged.emit()
-	if health == 0:
-		queue_free() # the hero has been vanquished
+	if health == 0:  # the hero has been vanquished
+		get_parent().GameOver()
+		#queue_free()
+	

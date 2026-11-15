@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dccjatunu6f8e"]
+
+[ext_resource type="Script" uid="uid://c4mjawrosyu8" path="res://UI/game_over.gd" id="1_kjexa"]
+[ext_resource type="FontFile" uid="uid://b5sreudmht8ri" path="res://fonts/GrimoireOfDeath-Regular.ttf" id="2_vjbsa"]
+
+[node name="GameOver" type="Node2D" unique_id=17394312]
+process_mode = 2
+
+[node name="Control" type="Control" parent="." unique_id=1898761670]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kjexa")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=660528526]
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 645.0
+
+[node name="GameOverLabel" type="Label" parent="Control" unique_id=2002687613]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 91.0
+offset_right = 812.0
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vjbsa")
+theme_override_font_sizes/font_size = 71
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="Control" unique_id=352016896]
+layout_mode = 1
+offset_left = 390.0
+offset_top = 232.0
+offset_right = 750.0
+offset_bottom = 291.0
+text = "Play Again"
+
+[node name="Exit" type="Button" parent="Control" unique_id=1508676359]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 311.0
+offset_right = 749.0
+offset_bottom = 369.0
+text = "Exit"
+
+[connection signal="pressed" from="Control/Restart" to="Control" method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/Exit" to="Control" method="_on_exit_pressed"]
