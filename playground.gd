@@ -17,5 +17,7 @@ func _process(_delta: float) -> void:
 
 func GameOver() -> void:
 	if player.health <= 0: # an inglorious defeat
+		player.animation_player.play("die_" + player.AnimDirection())# the hero has been vanquished
+		await get_tree().create_timer(5).timeout
 		game_over_screen.show()
 		get_tree().paused = true

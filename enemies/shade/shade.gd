@@ -1,6 +1,4 @@
 class_name Shade extends CharacterBody2D
-# TODO: add more agressive behavior and an attack function
-# Going to have to remove "in danger" once attacking is implemented :(
 # TODO: Make a proper state machine once everything is working
 # In WANDERING the shade will walk around the map, and occasionally idle. In CHASING the shade 
 # will, upon seeing the player, re-use the same walking speed for "danger", until it reaches the 
@@ -122,8 +120,7 @@ func _physics_process(_delta):
 		#target_position = to_local(player.get_node("Sprite2D").global_position)
 		#queue_redraw()
 
-	# TODO: Collision count isn't working. Find another way to check if shade is
-	# touching the player
+	# TODO: Check if this is the best way to do this
 	if get_slide_collision_count() > 0: 
 		var collided_with = get_slide_collision(0)
 		#print("collided_with: ", collided_with.get_collider().name) 
@@ -144,8 +141,7 @@ func _physics_process(_delta):
 			thug_wannabe = 0 # get a new random direction if wandering
 				
 
-		
-			
+
 func wandering(): 	
 	#print("wandering")
 	thug_wannabe -= 1
@@ -196,9 +192,6 @@ func chasing():
 	direction = global_position.direction_to(player.get_node("Sprite2D").global_position)
 	#print("direction: ", direction)
 	
-	
-	
-	#shade_sprite.flip_h = false
 	if abs(direction.y) > abs(direction.x) * 1.1: # mostly moving up or down
 		if direction.y < 0: 
 			#print("chasing up")

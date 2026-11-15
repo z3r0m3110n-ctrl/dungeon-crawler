@@ -15,6 +15,7 @@ var limit_bottom : int = 0
 @onready var state_machine : PlayerStateMachine = $StateMachine
 @onready var tilemap: LevelTileMap = $"../Environment/Grass"
 @export var maxhealth : int = 100
+@onready var particles: CPUParticles2D = $CPUParticles2D
 
 signal DirectionChanged(new_direction : Vector2)
 signal HealthChanged()
@@ -75,12 +76,32 @@ func AnimDirection() -> String:
 
 
 func GetHurt(damage : int) -> void:
-	health  -= damage
-	print ("PlayerHealth", health)
-	HealthChanged.emit()
-	if health == 0:  # the hero has been vanquished
-		get_parent().GameOver()
-		#queue_free()
+	# show blood particle effect
+	if health > 0:
+		particles.amount = 20 #50
+		particles.scale_amount_min = 0.2
+		particles.scale_amount_max = 0.5
+		particles.gravity = Vector2.ZERO
+		particles.one_shot = true
+		particles.explosiveness = 1.0
+		particles.direction = Vector2.RIGHT
+		particles.spread = 180.0 #360.0
+		particles.initial_velocity_min = 30.0;
+		particles.initial_velocity_max = 60.0;
+		particles.radial_accel_min = 0.0;
+		particles.radial_accel_max = 20.0;
+		particles.tangential_accel_min = 0.0;
+		particles.tangential_accel_max = 20.0;
+		particles.damping_min = 30.0;
+		particles.damping_max = 0.0;
+		particles.lifetime = 0.6
+		particles.emitting = true
+	
+	# lose health
+	if health > 0:
+		health  -= damage
+		print ("PlayerHealth", health)
+		HealthChanged.emit()
 	
 func UpdateLimits(bounds : Array[Vector2]) -> void:
 	if bounds == []:
