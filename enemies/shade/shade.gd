@@ -32,6 +32,11 @@ var thug_wannabe : int = 10 # time in the same direction
 var random_direction : int = 1
 var animation_state : String = "idle"
 
+var limit_left : int = 0
+var limit_right : int = 0
+var limit_top : int = 0
+var limit_bottom : int = 0
+
 var hit_damage : int = 5 # how much damagae the sprite does when it hits the player
 
 
@@ -50,6 +55,7 @@ var player : Node2D
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var hit_box: HitBox = $HitBox
+@onready var tilemap: LevelTileMap = $"../Environment/Grass"
 
 
 
@@ -60,6 +66,9 @@ func _ready() -> void:
 	
 	# find the player
 	player = get_tree().get_first_node_in_group("Player")
+	
+	# get the level map limits
+	LevelManager.TileMapBoundsChanged.connect(UpdateLimits)
 	
 func TakeDamage(_damage : int) -> void:
 	health -= 1
@@ -115,6 +124,10 @@ func _physics_process(_delta):
 		update_direction()
 		move_and_slide()
 		
+		# Keep the shade on the grass tileset
+		var margin = 50 # add a margin to the boundary
+		global_position.x = clamp(global_position.x, limit_left + margin, limit_right - margin)
+		global_position.y = clamp(global_position.y, limit_top + margin, limit_bottom - margin)
 		
 	#if player != null: # this is just for testing
 		#target_position = to_local(player.get_node("Sprite2D").global_position)
@@ -260,3 +273,10 @@ func update_animation():
 		velocity = speed * Vector2.DOWN
 		animation_player.play(animation_state + "_down")
 	
+func UpdateLimits(bounds : Array[Vector2]) -> void:
+	if bounds == []:
+		return # there are no bounds
+	limit_left = int(bounds[0].x)
+	limit_top = int(bounds[0].y)
+	limit_right = int(bounds[1].x)
+	limit_bottom = int(bounds[1].y)

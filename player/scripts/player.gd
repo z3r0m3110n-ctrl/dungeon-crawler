@@ -37,6 +37,9 @@ func _process( _delta ):
 
 	
 func _physics_process(_delta):
+	if health < 0:
+		return
+		
 	move_and_slide()
 	
 	# Keep the player on the grass tileset
@@ -76,6 +79,7 @@ func AnimDirection() -> String:
 
 
 func GetHurt(damage : int) -> void:
+	
 	# show blood particle effect
 	if health > 0:
 		particles.amount = 20 #50
@@ -97,11 +101,12 @@ func GetHurt(damage : int) -> void:
 		particles.lifetime = 0.6
 		particles.emitting = true
 	
-	# lose health
-	if health > 0:
+		# lose health
 		health  -= damage
 		print ("PlayerHealth", health)
 		HealthChanged.emit()
+	
+
 	
 func UpdateLimits(bounds : Array[Vector2]) -> void:
 	if bounds == []:

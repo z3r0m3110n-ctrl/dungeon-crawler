@@ -8,7 +8,7 @@ class_name Playground extends Node2D
 func _ready() -> void:
 	game_over_screen.hide()
 	# Set the player starting position
-	player.global_position = Vector2(500, 300)
+	player.global_position = Vector2(randi_range(0,700),randi_range(000,500))#Vector2(500, 300)
 	player.HealthChanged.connect(GameOver)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,6 +17,7 @@ func _process(_delta: float) -> void:
 
 func GameOver() -> void:
 	if player.health <= 0: # an inglorious defeat
+		print("game over")
 		player.animation_player.play("die_" + player.AnimDirection())# the hero has been vanquished
 		await get_tree().create_timer(5).timeout
 		game_over_screen.show()

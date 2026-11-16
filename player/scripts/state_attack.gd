@@ -14,6 +14,9 @@ var attacking : bool = false
 
 ## What happens when the player enters this State?
 func Enter() -> void:
+	if player.health <= 0: 
+		return
+		
 	player.UpdateAnimation("attack")
 	animation_player.animation_finished.connect(EndAttack)
 	
@@ -28,6 +31,8 @@ func Enter() -> void:
 
 ## What happens when the player exits this State?
 func Exit() -> void:
+	if player.health <= 0: 
+		return
 	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
 	hurt_box.monitoring = false
