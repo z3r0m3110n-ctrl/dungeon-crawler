@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://chs8mdjfmtr1a" path="res://Tile Maps/levelTileMap.gd" id="9_h1jm5"]
 [ext_resource type="PackedScene" uid="uid://dccjatunu6f8e" path="res://UI/GameOver.tscn" id="10_h1jm5"]
 [ext_resource type="Texture2D" uid="uid://dsa1rhav8jx4j" path="res://Tile Maps/Sprites/forest.png" id="10_pio1y"]
+[ext_resource type="PackedScene" uid="uid://q5fsl8ims4f7" path="res://props/HealthPotion/HealthPotion.tscn" id="12_te8jg"]
 
 [sub_resource type="Theme" id="Theme_4bqqs"]
 
@@ -12138,3 +12139,6 @@ tile_set = SubResource("TileSet_d7q6v")
 
 [node name="GameOver" parent="UI" unique_id=17394312 instance=ExtResource("10_h1jm5")]
 visible = false
+
+[node name="HealthPotion" parent="." unique_id=1809917794 instance=ExtResource("12_te8jg")]
+position = Vector2(366, 682)
