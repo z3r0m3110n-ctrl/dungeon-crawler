@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://q5fsl8ims4f7"]
 
-[ext_resource type="Script" uid="uid://ddv3esbwwqc5a" path="res://props/HealthPotion/health_potion.gd" id="1_otun0"]
 [ext_resource type="Texture2D" uid="uid://bm7hcmbg0ipy" path="res://props/sprites/health-potion.png" id="1_y2luk"]
+[ext_resource type="Script" uid="uid://d3xi0yjrtppyl" path="res://props/scripts/powerup.gd" id="1_yq4j0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ef5j6"]
 radius = 12.0
 
 [node name="HealthPotion" type="Area2D" unique_id=1961274376]
-script = ExtResource("1_otun0")
+script = ExtResource("1_yq4j0")
+power_up_amount = -25
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=449210807]
 position = Vector2(0, 1.0000002)

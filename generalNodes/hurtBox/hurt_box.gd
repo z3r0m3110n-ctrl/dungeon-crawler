@@ -5,13 +5,7 @@ class_name HurtBox extends Area2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	area_entered.connect(AreaEntered)
-	#$HurtBox.Damaged.connect(GetHurt)
 
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 func AreaEntered(a : Area2D) -> void:
 	if a is HitBox:

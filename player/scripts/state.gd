@@ -3,10 +3,6 @@ class_name State extends Node
 ## Stores a reference to the player that this State belongs to
 static var player: Player
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 ## What happens when the player enters this State?
 func Enter() -> void:
 	pass

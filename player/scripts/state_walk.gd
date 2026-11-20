@@ -9,11 +9,6 @@ class_name State_Walk extends State
 func Enter() -> void:
 	player.UpdateAnimation("walk")
 
-
-## What happens when the player exits this State?
-func Exit() -> void:
-	pass
-	
 	
 func Physics( _delta : float) -> State:
 	return null 
