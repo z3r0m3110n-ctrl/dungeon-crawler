@@ -9,9 +9,15 @@ enum PowerUpType {
 
 @export var power_up_type: PowerUpType
 @export var power_up_amount: int = 0
+@onready var label: Label = $Label
 
 func _ready():
 	body_entered.connect(_on_body_entered)
+	
+	# name label above item
+	label.hide()
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 
 func _on_body_entered(body : CharacterBody2D):
 	if body.is_in_group("Player"):
@@ -21,3 +27,9 @@ func _on_body_entered(body : CharacterBody2D):
 				body.GetHurt(power_up_amount)
 				
 			queue_free()
+
+func _on_mouse_entered():
+	label.show()
+
+func _on_mouse_exited():
+	label.hide()

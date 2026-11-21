@@ -18,3 +18,14 @@ texture = ExtResource("1_y2luk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1044825797]
 position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_ef5j6")
+
+[node name="Label" type="Label" parent="." unique_id=532035460]
+visible = false
+offset_left = -55.0
+offset_top = -37.0
+offset_right = 51.0
+offset_bottom = -14.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47058824)
+text = "Health Potion"
+horizontal_alignment = 1
+vertical_alignment = 1
