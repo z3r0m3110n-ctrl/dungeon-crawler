@@ -70,8 +70,8 @@ func _ready() -> void:
 	# get the level map limits
 	LevelManager.TileMapBoundsChanged.connect(UpdateLimits)
 	
-func TakeDamage(_damage : int) -> void:
-	health -= 1
+func TakeDamage(damage : int) -> void:
+	health -= damage
 	print(name ," health: ", health)
 	
 	# make the particles explode

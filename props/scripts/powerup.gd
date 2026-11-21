@@ -2,9 +2,10 @@ class_name PowerUp extends Area2D
 
 # Player statistic this power up affects
 enum PowerUpType {
-	HEALTH
+	HEALTH,
+	DAMAGE
 }
-# TODO: Add other power ups such as ARMOR, DAMAGE, and SPEED
+# TODO: Add other power ups such as ARMOR and SPEED?
 
 
 @export var power_up_type: PowerUpType
@@ -25,7 +26,8 @@ func _on_body_entered(body : CharacterBody2D):
 		if body != null:
 			if power_up_type == PowerUpType.HEALTH:
 				body.GetHurt(power_up_amount)
-				
+			elif power_up_type == PowerUpType.DAMAGE:
+				body.SetWeaponBonusDamage(power_up_amount)
 			queue_free()
 
 func _on_mouse_entered():

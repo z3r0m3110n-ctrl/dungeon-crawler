@@ -21,6 +21,21 @@ func TakeDamage(_damage : int) -> void:
 	audio.stream = barrelbreak
 	audio.play() 
 	await audio.finished
+	
+	# Randomly spawn a power up
+	if randf() < 0.6:
+		var powerup_scene = [
+			"res://props/HealthPotion/HealthPotion.tscn",
+			"res://props/dagger/dagger.tscn"
+		]
+		
+		var powerup = load(powerup_scene[randi_range(0, powerup_scene.size() - 1)]).instantiate()
+		
+		# Add the power up to the level
+		get_parent().add_child(powerup)
+		powerup.global_position = global_position
+	
+	# Destroy the barrel
 	queue_free()
 
 func _on_mouse_entered():

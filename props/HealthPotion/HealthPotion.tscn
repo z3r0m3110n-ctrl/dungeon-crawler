@@ -2,22 +2,28 @@
 
 [ext_resource type="Texture2D" uid="uid://bm7hcmbg0ipy" path="res://props/sprites/health-potion.png" id="1_y2luk"]
 [ext_resource type="Script" uid="uid://d3xi0yjrtppyl" path="res://props/scripts/powerup.gd" id="1_yq4j0"]
+[ext_resource type="Texture2D" uid="uid://5fdtduat7nfi" path="res://props/sprites/shadow.png" id="3_otun0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ef5j6"]
-radius = 12.0
+radius = 15.132746
 
 [node name="HealthPotion" type="Area2D" unique_id=1961274376]
 script = ExtResource("1_yq4j0")
 power_up_amount = -25
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=449210807]
-position = Vector2(0, 1.0000002)
-scale = Vector2(0.54999995, 0.825)
+position = Vector2(3.5762787e-07, -2.7500014)
+scale = Vector2(0.70000005, 1.0125)
 texture = ExtResource("1_y2luk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1044825797]
-position = Vector2(0, 9)
+position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_ef5j6")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=348863643]
+position = Vector2(2, 13)
+scale = Vector2(0.8526182, 0.36585364)
+texture = ExtResource("3_otun0")
 
 [node name="Label" type="Label" parent="." unique_id=532035460]
 visible = false

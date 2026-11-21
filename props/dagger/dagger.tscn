@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ctf5kpoiusf2m"]
+
+[ext_resource type="Texture2D" uid="uid://cs02gh6v2fw6b" path="res://props/sprites/Dagger.png" id="1_iuswi"]
+[ext_resource type="Script" uid="uid://d3xi0yjrtppyl" path="res://props/scripts/powerup.gd" id="1_s3ju2"]
+[ext_resource type="Texture2D" uid="uid://5fdtduat7nfi" path="res://props/sprites/shadow.png" id="3_aktpd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7q6v"]
+size = Vector2(81, 38)
+
+[node name="Dagger" type="Area2D" unique_id=361602721]
+script = ExtResource("1_s3ju2")
+power_up_type = 1
+power_up_amount = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=716262442]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_iuswi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1060636154]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_d7q6v")
+
+[node name="Label" type="Label" parent="." unique_id=551579560]
+visible = false
+offset_left = -55.0
+offset_top = -37.0
+offset_right = 51.0
+offset_bottom = -14.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47058824)
+text = "Dagger"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=778821707]
+position = Vector2(1, 12.000001)
+scale = Vector2(2.2942357, 0.6128049)
+texture = ExtResource("3_aktpd")

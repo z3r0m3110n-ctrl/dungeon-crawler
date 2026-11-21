@@ -3,8 +3,11 @@ class_name Player extends CharacterBody2D
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 
+# Player characteristics
 @export var max_health: int = 100
 var health : int = 100
+
+# Screen limits
 var limit_left : int = 0
 var limit_right : int = 0
 var limit_top : int = 0
@@ -16,6 +19,7 @@ var limit_bottom : int = 0
 @onready var tilemap: LevelTileMap = $"../Environment/Grass"
 @export var maxhealth : int = 100
 @onready var particles: CPUParticles2D = $CPUParticles2D
+@onready var hurt_box: HurtBox = $Interactions/HurtBox
 
 signal DirectionChanged(new_direction : Vector2)
 signal HealthChanged()
@@ -25,8 +29,6 @@ func _ready():
 	state_machine.Initialize(self)
 	LevelManager.TileMapBoundsChanged.connect(UpdateLimits)
 	
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process( _delta ):
@@ -106,10 +108,11 @@ func GetHurt(damage : int) -> void:
 	health  -= damage
 	health = clampi(health, 0, 100)
 	
-	print ("PlayerHealth", health)
+	print ("PlayerHealth: ", health)
 	HealthChanged.emit()
 	
-
+func SetWeaponBonusDamage(damage : int) -> void:
+	hurt_box.SetBonusDamage(damage)
 	
 func UpdateLimits(bounds : Array[Vector2]) -> void:
 	if bounds == []:
