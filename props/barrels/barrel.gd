@@ -23,7 +23,7 @@ func TakeDamage(_damage : int) -> void:
 	await audio.finished
 	
 	# Randomly spawn a power up
-	if randf() < 0.6:
+	if randf() <= 0.75:
 		var powerup_scene = [
 			"res://props/HealthPotion/HealthPotion.tscn",
 			"res://props/dagger/dagger.tscn"
