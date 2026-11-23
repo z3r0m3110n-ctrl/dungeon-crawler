@@ -9,4 +9,5 @@ id = "ShortSword"
 display_name = "Short Sword"
 icon = ExtResource("1_hongx")
 type = 0
+equip_slot = 1
 metadata/_custom_type_script = "uid://jcmflwpps5kr"

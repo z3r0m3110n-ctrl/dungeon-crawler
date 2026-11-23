@@ -1,6 +1,7 @@
 class_name InventoryUI extends CanvasLayer
 
 @onready var grid: GridContainer = $InventoryPanel/MainLayout/GridContainer
+@onready var equipment_panel: Control = $InventoryPanel/MainLayout/EquipmentPanel
 @onready var hud: CanvasLayer = $"../../HUD"
 
 #const SHORT_SWORD := preload("res://props/weapons/swords/short_sword.tres") # testing
@@ -15,17 +16,30 @@ func _ready() -> void:
 	var i := 0
 	for child in grid.get_children():
 		if child is SlotUI:
+			child.kind = Inventory.Kind.INVENTORY
 			child.index = i
 			ui_slots.append(child)
 			i += 1
+	# Equipment slots: each slot's "Equip Slot" Inspector setting defines the layout
+	var layout: Array[ItemData.EquipSlot] = []
+	i = 0
+	for child in equipment_panel.get_children():
+		if child is SlotUI:
+			child.kind = Inventory.Kind.EQUIPMENT
+			child.index = i
+			layout.append(child.equip_slot)
+			ui_slots.append(child)
+			i += 1
+
+	Inventory.setup_equipment(layout)        
 	Inventory.inventory_changed.connect(_refresh)
 	_refresh()
 	hide()
-	#Inventory.add_item(SHORT_SWORD,1) # testing
+	
 	
 func _refresh() -> void:
 	for s in ui_slots: 
-		print(s.index)
+		#print("slot index: ", s.index)
 		s.refresh()
 
 

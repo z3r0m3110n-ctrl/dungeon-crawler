@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cvv6ld2e1yqpi" path="res://props/barrels/barrel.tscn" id="4_is3ju"]
 [ext_resource type="PackedScene" uid="uid://dsvh5ii4i0r1y" path="res://enemies/shade/shade.tscn" id="5_o00ia"]
 [ext_resource type="Script" uid="uid://b5j25whqnypnh" path="res://player/scripts/health_bar.gd" id="6_4bqqs"]
+[ext_resource type="Script" uid="uid://b05r6nt4s4aky" path="res://props/scripts/pickable.gd" id="6_jgc46"]
 [ext_resource type="FontFile" uid="uid://b5sreudmht8ri" path="res://fonts/GrimoireOfDeath-Regular.ttf" id="6_v7dth"]
+[ext_resource type="Resource" uid="uid://ctt6kwdlfeffn" path="res://props/weapons/swords/short_sword.tres" id="7_dk0co"]
 [ext_resource type="Texture2D" uid="uid://dj63pxyho0aju" path="res://props/sprites/blood-drop.png" id="7_ynsuh"]
 [ext_resource type="Texture2D" uid="uid://cmsk7pxpdrgsh" path="res://Tile Maps/Sprites/grassTileset.png" id="8_pi42a"]
 [ext_resource type="Script" uid="uid://chs8mdjfmtr1a" path="res://Tile Maps/levelTileMap.gd" id="9_h1jm5"]
@@ -12083,7 +12085,9 @@ position = Vector2(2108, 1294)
 motion_mode = 1
 
 [node name="ShortSword" parent="." unique_id=1954315363 instance=ExtResource("2_jgc46")]
-position = Vector2(183.3772, 175.75737)
+position = Vector2(511.92126, 293.32462)
+script = ExtResource("6_jgc46")
+item = ExtResource("7_dk0co")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=507913243]
 

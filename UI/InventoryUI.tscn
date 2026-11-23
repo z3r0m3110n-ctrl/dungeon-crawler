@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://b5sreudmht8ri" path="res://fonts/GrimoireOfDeath-Regular.ttf" id="1_la3np"]
 [ext_resource type="PackedScene" uid="uid://cvqwq3xkqciup" path="res://UI/InventorySlot.tscn" id="2_7cfyf"]
 [ext_resource type="Texture2D" uid="uid://b74y0b4pal8hs" path="res://Tile Maps/Sprites/inventory-background.png" id="4_72myj"]
+[ext_resource type="PackedScene" uid="uid://log8edepk2uf" path="res://UI/WeaponSlot.tscn" id="4_wesl3"]
 
 [node name="InventoryUi" type="CanvasLayer" unique_id=1152180706]
 process_mode = 3
@@ -40,10 +41,18 @@ offset_right = 1149.0
 offset_bottom = 647.0
 theme_override_constants/separation = 21
 
-[node name="EquipmentPanel" type="VBoxContainer" parent="InventoryPanel/MainLayout" unique_id=717968044]
-custom_minimum_size = Vector2(150, 300)
+[node name="EquipmentPanel" type="Control" parent="InventoryPanel/MainLayout" unique_id=549288036]
+custom_minimum_size = Vector2(20, 300)
 layout_mode = 2
-theme_override_constants/separation = 8
+
+[node name="WeaponSlot" parent="InventoryPanel/MainLayout/EquipmentPanel" unique_id=835580157 instance=ExtResource("4_wesl3")]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 110.389984
+offset_right = 483.0
+offset_bottom = 266.0
+equip_slot = 1
+kind = 1
 
 [node name="GridContainer" type="GridContainer" parent="InventoryPanel/MainLayout" unique_id=1317837299]
 custom_minimum_size = Vector2(330, 250)
@@ -53,7 +62,7 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 8
 
-[node name="InventorySlot0" parent="InventoryPanel/MainLayout/GridContainer" unique_id=835580157 instance=ExtResource("2_7cfyf")]
+[node name="InventorySlot0" parent="InventoryPanel/MainLayout/GridContainer" unique_id=1320506752 instance=ExtResource("2_7cfyf")]
 layout_mode = 2
 
 [node name="InventorySlot1" parent="InventoryPanel/MainLayout/GridContainer" unique_id=2049005773 instance=ExtResource("2_7cfyf")]
