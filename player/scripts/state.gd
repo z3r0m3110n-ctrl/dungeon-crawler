@@ -2,14 +2,6 @@ class_name State extends Node
 
 ## Stores a reference to the player that this State belongs to
 static var player: Player
-
-## What happens when the player enters this State?
-func Enter() -> void:
-	pass
-
-## What happens when the player exits this State?
-func Exit() -> void:
-	pass
 	
 	
 func Physics( _delta : float) -> State:

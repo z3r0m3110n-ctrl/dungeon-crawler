@@ -35,3 +35,5 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47058824)
 text = "Health Potion"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1989998523]

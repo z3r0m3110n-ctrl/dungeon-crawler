@@ -19,7 +19,3 @@ func update():
 	bar_blood.scale_amount_max = 0.8
 	bar_blood.lifetime = 0.5 # make this number bigger for a longer drip
 	bar_blood.emitting = true
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
