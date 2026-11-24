@@ -25,6 +25,7 @@ Note: This is an early prototype. Some features are still under development
 |---|---|
 | Arrow Keys | Move the player |
 | Z | Attack |
+| I | Opens/closes the inventory |
 
 
 ### Releases
@@ -32,8 +33,10 @@ Note: This is an early prototype. Some features are still under development
 - [Combat & Exploration Update](https://github.com/z3r0m3110n-ctrl/dungeon-crawler/releases/tag/v0.2.0): Introduced player attacks, basic combat mechanics, destructible barrels, sound effects, improved animations and collision, expanded environments, and camera and player movement boundaries.
 - [An New Enemy: The Shade](https://github.com/z3r0m3110n-ctrl/dungeon-crawler/releases/tag/v0.3.0): Introduced the first enemy, the Shade, featuring custom-designed sprites, idle and walking animations, and basic AI. The Shade can wander around the environment, detect and chase the player, and switch between wandering, chasing, and attacking states. Added enemy health, hit particle effects, and new sound effects, including a hissing sound when the Shade encounters the player. Also added a sound effect for destroying barrels.
 - [Survival & World Expansion Update](https://github.com/z3r0m3110n-ctrl/dungeon-crawler/releases/tag/v0.4.0): The player has lost its immortality with the implementation of a health system, including a health bar with custom animation effects, damage incurred from enemies, and death animation features. The world has been expanded with a forest environment, improved terrain and collision detection.
+- [Survival & World Expansion Update](https://github.com/z3r0m3110n-ctrl/dungeon-crawler/releases/tag/v0.5.0): Introduced health potions and damage-boosting power-ups, which can randomly drop from destructible barrels. Added new collectible weapons, including a glaive, alongside the short sword. Introduced a new inventory system, allowing players to collect items by clicking on them in the environment and open their inventory using the I key.
   
-<img width="257" height="292" alt="Screenshot 2026-11-14 230019" src="https://github.com/user-attachments/assets/5bc96ae0-5cdb-4723-aab8-c86cd9ce5770" />
+
+<img width="860" height="428" alt="Screenshot 2026-11-22 191522" src="https://github.com/user-attachments/assets/1e817252-d1e6-490b-ac40-7e4649ac465e" />
 
 
 ## Current Status
@@ -46,15 +49,20 @@ The current version includes:
 - Variable enemy health.
 - Enemy hit particle effects.
 - Destructible environmental objects.
-- Sound effects for combat and environmental interactions.
+- Sound effects for combat, power up, and environmental interactions.
 - An expanded environment for exploration, requiring the player to navigate around obstacles.
 - Basic camera and player movement boundaries.
-- A player health system
-- Death animation and custom game over sequence
+- A player health system.
+- Death animation and custom game over sequence.
+- A preliminary inventory system, which allows the player to add items.
+- Health potions that restore player health, as well as damage-boosting power-ups that increase weapon damage.
+- Interactive item labels displayed when hovering over objects.
+- An inventory system that opens and closes using the I key.
+- Item collection through clicking on objects in the environment.
 
 Please see the release notes for more details.
 
-<img width="555" height="548" alt="Screenshot 2026-11-03 232149" src="https://github.com/user-attachments/assets/8d567035-bafc-4f9b-834b-c47ec7ca41d9" />
+<img width="1147" height="636" alt="Screenshot 2026-11-22 191535" src="https://github.com/user-attachments/assets/8eaa940c-e31c-4973-95a5-cf814d4453df" />
 
 
 
@@ -65,5 +73,8 @@ Please see the release notes for more details.
 - itch.io — Source of open-source sprites, tile maps, sound effects, and fonts.
 - GDScript — Used to implement movement and animation state management.
 
-<img width="635" height="388" alt="Screenshot 2026-11-01 012120" src="https://github.com/user-attachments/assets/e3c89d91-80ac-4e5c-9d38-faa986650584" />
-<img width="512" height="256" alt="grassTileset" src="https://github.com/user-attachments/assets/bcd10f96-2dbd-46d9-a8e8-8c8f23c81e88" />
+<img width="555" height="548" alt="Screenshot 2026-11-03 232149" src="https://github.com/user-attachments/assets/8d567035-bafc-4f9b-834b-c47ec7ca41d9" />
+
+
+<!--<img width="512" height="256" alt="grassTileset" src="https://github.com/user-attachments/assets/bcd10f96-2dbd-46d9-a8e8-8c8f23c81e88" />-->
+<img width="257" height="292" alt="Screenshot 2026-11-14 230019" src="https://github.com/user-attachments/assets/5bc96ae0-5cdb-4723-aab8-c86cd9ce5770" />
