@@ -4,21 +4,22 @@
 
 [node name="WeaponSlot" type="Panel" unique_id=835580157]
 custom_minimum_size = Vector2(48, 48)
-offset_right = 60.0
-offset_bottom = 60.0
+offset_right = 81.0
+offset_bottom = 114.0
 script = ExtResource("1_e68ne")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=786219883]
 layout_mode = 0
-offset_right = 60.0
-offset_bottom = 49.0
+offset_right = 79.0
+offset_bottom = 114.0
+flip_h = true
 
 [node name="QuantityLabel" type="Label" parent="." unique_id=1613899181]
 layout_mode = 0
-offset_left = 26.0
-offset_top = 26.0
-offset_right = 49.0
-offset_bottom = 49.0
+offset_left = 57.0
+offset_top = 90.0
+offset_right = 80.0
+offset_bottom = 113.0
 theme_override_font_sizes/font_size = 14
 horizontal_alignment = 2
 vertical_alignment = 2

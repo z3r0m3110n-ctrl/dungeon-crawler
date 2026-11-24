@@ -27,5 +27,9 @@ enum EquipSlot {
 @export var type : ItemType = ItemType.GENERAL
 @export var equip_slot: EquipSlot = EquipSlot.NONE
 
-# How many  you have stacks of this item?
+# How items in a stack?
 @export var max_stack : int = 1
+
+# WeaponStats
+@export_group("Weapon")
+@export var damage := 0

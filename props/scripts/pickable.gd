@@ -43,3 +43,4 @@ func _input_event(viewport: Viewport, event: InputEvent, _shape: int) -> void:
 		Inventory.add_item(item, qty)      # TODO: Check if full
 		queue_free()                
 		viewport.set_input_as_handled()   
+		

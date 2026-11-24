@@ -16,7 +16,7 @@ var attacking : bool = false
 func Enter() -> void:
 	if player.health <= 0: 
 		return
-		
+	
 	player.UpdateAnimation("attack")
 	animation_player.animation_finished.connect(EndAttack)
 	

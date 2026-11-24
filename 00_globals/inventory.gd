@@ -1,6 +1,8 @@
 extends Node
 
 signal inventory_changed
+signal weapon_changed
+
 enum Kind { INVENTORY, EQUIPMENT }
 const INV_SIZE := 24
 var slots: Array = []
@@ -40,6 +42,10 @@ func _set_stack(kind: Kind, i: int, s: ItemStack) -> void:
 		slots[i] = s
 	else:
 		equipment[i] = s
+		# check if there is a new weapon equipped
+		if equip_layout[i] == ItemData.EquipSlot.MAIN_HAND:
+			weapon_changed.emit()
+			#print("weapon changed")
 
 func get_player() -> Node:
 	return get_tree().get_first_node_in_group("player")
@@ -101,4 +107,15 @@ func move(from_kind: Kind, from_i: int, to_kind: Kind, to_i: int) -> void:
 	else:
 		_set_stack(to_kind, to_i, a)
 		_set_stack(from_kind, from_i, b)
+		
 	inventory_changed.emit()
+
+# Return the current weapon
+func get_weapon() -> ItemData:
+	for i in equip_layout.size():
+		if equip_layout[i] == ItemData.EquipSlot.MAIN_HAND:
+			var s: ItemStack = equipment[i]
+			return s.item if s else null
+	return null
+			
+	
