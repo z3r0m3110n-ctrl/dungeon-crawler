@@ -39,9 +39,9 @@ func _process( _delta ):
 
 	
 func _physics_process(_delta):
-	if health < 0:
+	if health <= 0:
 		return
-		
+
 	move_and_slide()
 	
 	# Keep the player on the grass tileset

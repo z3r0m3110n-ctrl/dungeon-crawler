@@ -1,14 +1,12 @@
 class_name State_Idle extends State
 
 @onready var walk : State = $"../Walk"
-@onready var attack: State_Attack = $"../Attack"
-
+@onready var attack: State = $"../Attack"
+@onready var die: State = $"../Die"
 
 ## What happens when the player enters this State?
 func Enter() -> void:
 	player.UpdateAnimation("idle")
-
-
 
 ## What happens when the player exits this State?
 func Exit() -> void:
@@ -21,15 +19,13 @@ func Physics( _delta : float) -> State:
 ## What happens with input events in this State?
 func Process( _delta : float ) -> State:
 	if player.health <= 0:
-		return
+		return die # the hero has been vanquished
 	if player.direction != Vector2.ZERO:
 		return walk 
 	player.velocity = Vector2.ZERO
 	return null
 	
 func HandleInput( _event: InputEvent ) -> State:
-	if player.health <= 0:
-		return
 	if _event.is_action_pressed("attack"):
 		return attack
 	return null

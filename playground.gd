@@ -18,10 +18,9 @@ func _process(_delta: float) -> void:
 	pass
 
 func GameOver() -> void:
-	if player.health <= 0: # an inglorious defeat
+	if player.state_machine.current_state.name == "Die": # an inglorious defeat
 		print("game over")
-		player.animation_player.play("die_" + player.AnimDirection())# the hero has been vanquished
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(2).timeout # pause before showing game over screen
 		game_over_screen.show()
 		hud.hide()
 		get_tree().paused = true

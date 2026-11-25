@@ -6,7 +6,8 @@ var attacking : bool = false
 @export_range(1,20,0.5) var decelerate_speed : float = 5.0
 
 @onready var walk : State = $"../Walk"
-@onready var idle: State_Idle = $"../Idle"
+@onready var idle: State = $"../Idle"
+@onready var die: State = $"../Die"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var audio: AudioStreamPlayer2D = $"../../AudioStreamPlayer2D"
 @onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
@@ -14,8 +15,8 @@ var attacking : bool = false
 
 ## What happens when the player enters this State?
 func Enter() -> void:
-	if player.health <= 0: 
-		return
+	#if player.health <= 0: 
+		#return
 	
 	player.UpdateAnimation("attack")
 	animation_player.animation_finished.connect(EndAttack)
@@ -31,8 +32,6 @@ func Enter() -> void:
 
 ## What happens when the player exits this State?
 func Exit() -> void:
-	if player.health <= 0: 
-		return
 	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
 	hurt_box.monitoring = false
@@ -44,7 +43,9 @@ func Physics( _delta : float) -> State:
 ## What happens with input events in this State?
 func Process( _delta : float ) -> State:
 	player.velocity -= player.velocity * decelerate_speed * _delta
-	#player.velocity =Vector2.ZERO
+	
+	if player.health <= 0: 
+		return die # can't attack, you're dead
 	
 	if attacking == false:
 		if player.direction == Vector2.ZERO:

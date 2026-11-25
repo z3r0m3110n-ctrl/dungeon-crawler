@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://68c78345eqbd" path="res://player/scripts/state_idle.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://m4bygg8b52i4" path="res://player/scripts/state_walk.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://yqw8q8if17yv" path="res://player/scripts/state_attack.gd" id="8_rgyib"]
+[ext_resource type="Script" uid="uid://b85662kq64dja" path="res://player/scripts/state_die.gd" id="8_wodsf"]
 [ext_resource type="AudioStream" uid="uid://bfps0epmvnjh1" path="res://player/audio/whoosh_1.wav" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://2bw0b6cgxl6r" path="res://player/scripts/playerInteractionsHost.gd" id="10_2ieo8"]
 [ext_resource type="Script" uid="uid://2vurrbppgyix" path="res://generalNodes/hurtBox/hurt_box.gd" id="10_8t03j"]
@@ -430,6 +431,9 @@ script = ExtResource("3_g1dw6")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1162935402]
 script = ExtResource("4_yw30f")
+
+[node name="Die" type="Node" parent="StateMachine" unique_id=1712640974]
+script = ExtResource("8_wodsf")
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=842434340]
 script = ExtResource("5_qjkh3")
