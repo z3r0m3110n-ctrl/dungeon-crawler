@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dmdrelj2nbqoj"]
+
+[ext_resource type="Texture2D" uid="uid://cfxnfm71q0dtr" path="res://props/sprites/Sword02.png" id="1_0rp7j"]
+[ext_resource type="Script" uid="uid://jcmflwpps5kr" path="res://inventory/scripts/item_data.gd" id="2_ewvsd"]
+
+[resource]
+script = ExtResource("2_ewvsd")
+id = "Scimitar"
+display_name = "Scimitar"
+icon = ExtResource("1_0rp7j")
+type = 0
+equip_slot = 1
+damage = 3
+metadata/_custom_type_script = "uid://jcmflwpps5kr"

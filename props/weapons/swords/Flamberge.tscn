@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cbn7nyty1svml"]
+
+[ext_resource type="Script" uid="uid://b05r6nt4s4aky" path="res://props/scripts/pickable.gd" id="1_vng3x"]
+[ext_resource type="Resource" uid="uid://c55pn1qnv6cx1" path="res://props/weapons/swords/Flamberge.tres" id="2_vng3x"]
+[ext_resource type="Texture2D" uid="uid://4w1jemubiy23" path="res://props/sprites/Sword01.png" id="3_c2ab7"]
+[ext_resource type="Texture2D" uid="uid://5fdtduat7nfi" path="res://props/sprites/shadow.png" id="4_mxrg1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfw8p"]
+size = Vector2(122.5, 68)
+
+[node name="Flamberge" type="Area2D" unique_id=1954315363]
+script = ExtResource("1_vng3x")
+item = ExtResource("2_vng3x")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1129702706]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_c2ab7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=253261782]
+position = Vector2(-1, 22)
+shape = SubResource("RectangleShape2D_sfw8p")
+
+[node name="Label" type="Label" parent="." unique_id=1924912062]
+visible = false
+offset_left = -55.0
+offset_top = -37.0
+offset_right = 51.0
+offset_bottom = -14.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47058824)
+text = "Flamberge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=828254976]
+position = Vector2(1, 42)
+scale = Vector2(3.9849558, 1.1356707)
+texture = ExtResource("4_mxrg1")

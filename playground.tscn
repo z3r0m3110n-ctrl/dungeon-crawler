@@ -16,6 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://cd53dgcrgpcqy" path="res://UI/InventoryUI.tscn" id="14_f7pug"]
 [ext_resource type="PackedScene" uid="uid://q5fsl8ims4f7" path="res://props/HealthPotion/HealthPotion.tscn" id="16_dk0co"]
 [ext_resource type="PackedScene" uid="uid://051bq0f5ijrr" path="res://props/weapons/spears/glaive.tscn" id="16_pactg"]
+[ext_resource type="PackedScene" uid="uid://cbn7nyty1svml" path="res://props/weapons/swords/Flamberge.tscn" id="17_pactg"]
+[ext_resource type="PackedScene" uid="uid://b038tuacktu74" path="res://props/weapons/swords/Scimitar.tscn" id="18_ycdrs"]
+[ext_resource type="PackedScene" uid="uid://b02ygbenfv6wx" path="res://props/weapons/blunt/Mace.tscn" id="19_5m40n"]
+[ext_resource type="PackedScene" uid="uid://c4v3ws18tj6io" path="res://props/weapons/blunt/Hammer.tscn" id="20_jufm4"]
+[ext_resource type="PackedScene" uid="uid://c142gg7koeytp" path="res://props/weapons/blunt/Flange.tscn" id="21_ymgag"]
 
 [sub_resource type="Theme" id="Theme_4bqqs"]
 
@@ -12158,3 +12163,21 @@ tile_set = SubResource("TileSet_d7q6v")
 
 [node name="ShortSword2" parent="." unique_id=326013438 instance=ExtResource("16_pactg")]
 position = Vector2(725, 1984)
+
+[node name="Flamberge" parent="." unique_id=2004307384 instance=ExtResource("17_pactg")]
+position = Vector2(341, 523)
+
+[node name="Flamberge2" parent="." unique_id=1165977071 instance=ExtResource("17_pactg")]
+position = Vector2(104, 536)
+
+[node name="Scimitar" parent="." unique_id=1897079586 instance=ExtResource("18_ycdrs")]
+position = Vector2(-29, 432)
+
+[node name="Mace" parent="." unique_id=1893875521 instance=ExtResource("19_5m40n")]
+position = Vector2(534, 485)
+
+[node name="Hammer" parent="." unique_id=1671342399 instance=ExtResource("20_jufm4")]
+position = Vector2(304, 363)
+
+[node name="Flange" parent="." unique_id=1979548183 instance=ExtResource("21_ymgag")]
+position = Vector2(654, 388)

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c4v3ws18tj6io"]
+
+[ext_resource type="Script" uid="uid://b05r6nt4s4aky" path="res://props/scripts/pickable.gd" id="1_tdo1f"]
+[ext_resource type="Texture2D" uid="uid://1lj6tobdknqi" path="res://props/sprites/Mace03.png" id="2_tdo1f"]
+[ext_resource type="Script" uid="uid://jcmflwpps5kr" path="res://inventory/scripts/item_data.gd" id="3_80mjt"]
+[ext_resource type="Texture2D" uid="uid://5fdtduat7nfi" path="res://props/sprites/shadow.png" id="4_5fbwe"]
+
+[sub_resource type="Resource" id="Resource_ktkpk"]
+script = ExtResource("3_80mjt")
+id = "Hammer"
+display_name = "Hammer"
+icon = ExtResource("2_tdo1f")
+type = 0
+equip_slot = 1
+damage = 5
+metadata/_custom_type_script = "uid://jcmflwpps5kr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfw8p"]
+size = Vector2(122.5, 68)
+
+[node name="Hammer" type="Area2D" unique_id=1954315363]
+script = ExtResource("1_tdo1f")
+item = SubResource("Resource_ktkpk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1129702706]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_tdo1f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=253261782]
+position = Vector2(-1, 22)
+shape = SubResource("RectangleShape2D_sfw8p")
+
+[node name="Label" type="Label" parent="." unique_id=1924912062]
+visible = false
+offset_left = -55.0
+offset_top = -37.0
+offset_right = 51.0
+offset_bottom = -14.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47058824)
+text = "Hammer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=828254976]
+position = Vector2(1, 42)
+scale = Vector2(3.9849558, 1.1356707)
+texture = ExtResource("4_5fbwe")

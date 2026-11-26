@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dwou60gi8i34i"]
+
+[ext_resource type="Texture2D" uid="uid://c5cfs4bpolh6m" path="res://props/sprites/Mace01.png" id="1_6l71e"]
+[ext_resource type="Script" uid="uid://jcmflwpps5kr" path="res://inventory/scripts/item_data.gd" id="2_konyl"]
+
+[resource]
+script = ExtResource("2_konyl")
+id = "Mace"
+display_name = "Mace"
+icon = ExtResource("1_6l71e")
+type = 0
+equip_slot = 1
+damage = 4
+metadata/_custom_type_script = "uid://jcmflwpps5kr"
