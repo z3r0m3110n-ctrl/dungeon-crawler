@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b05r6nt4s4aky" path="res://props/scripts/pickable.gd" id="1_whrwm"]
 [ext_resource type="Texture2D" uid="uid://cfxnfm71q0dtr" path="res://props/sprites/Sword02.png" id="2_e5tly"]
+[ext_resource type="Resource" uid="uid://dmdrelj2nbqoj" path="res://props/weapons/swords/Scimitar.tres" id="2_whrwm"]
 [ext_resource type="Texture2D" uid="uid://5fdtduat7nfi" path="res://props/sprites/shadow.png" id="4_lgo81"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfw8p"]
@@ -9,6 +10,7 @@ size = Vector2(122.5, 68)
 
 [node name="Scimitar" type="Area2D" unique_id=1954315363]
 script = ExtResource("1_whrwm")
+item = ExtResource("2_whrwm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1129702706]
 scale = Vector2(2.5, 2.5)
@@ -30,6 +32,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=828254976]
+visible = false
 position = Vector2(1, 42)
 scale = Vector2(3.9849558, 1.1356707)
 texture = ExtResource("4_lgo81")

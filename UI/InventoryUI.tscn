@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cvqwq3xkqciup" path="res://UI/InventorySlot.tscn" id="2_7cfyf"]
 [ext_resource type="Texture2D" uid="uid://b74y0b4pal8hs" path="res://Tile Maps/Sprites/inventory-background.png" id="4_72myj"]
 [ext_resource type="PackedScene" uid="uid://log8edepk2uf" path="res://UI/WeaponSlot.tscn" id="4_wesl3"]
+[ext_resource type="PackedScene" uid="uid://b60cqrfed5g2s" path="res://UI/ArmorSlot.tscn" id="5_xhn22"]
 
 [node name="InventoryUi" type="CanvasLayer" unique_id=1152180706]
 process_mode = 3
@@ -53,6 +54,13 @@ offset_right = 483.0
 offset_bottom = 266.0
 equip_slot = 1
 kind = 1
+
+[node name="ArmorSlot" parent="InventoryPanel/MainLayout/EquipmentPanel" unique_id=1771595628 instance=ExtResource("5_xhn22")]
+layout_mode = 0
+offset_left = 515.0
+offset_top = 109.0
+offset_right = 638.0
+offset_bottom = 264.0
 
 [node name="GridContainer" type="GridContainer" parent="InventoryPanel/MainLayout" unique_id=1317837299]
 custom_minimum_size = Vector2(330, 250)

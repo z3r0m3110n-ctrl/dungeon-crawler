@@ -20,7 +20,7 @@ func _ready() -> void:
 			child.index = i
 			ui_slots.append(child)
 			i += 1
-	# Equipment slots: each slot's "Equip Slot" Inspector setting defines the layout
+	# Equipment slots
 	var layout: Array[ItemData.EquipSlot] = []
 	i = 0
 	for child in equipment_panel.get_children():

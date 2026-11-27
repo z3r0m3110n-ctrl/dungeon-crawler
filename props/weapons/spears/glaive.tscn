@@ -32,6 +32,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=828254976]
+visible = false
 position = Vector2(1, 42)
 scale = Vector2(3.9849558, 1.1356707)
 texture = ExtResource("4_vfgkr")

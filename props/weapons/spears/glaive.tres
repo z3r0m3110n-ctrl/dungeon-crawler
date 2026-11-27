@@ -5,6 +5,15 @@
 
 [resource]
 script = ExtResource("1_xt2p1")
+description = "Damage: 
+Blade: 5
+Blunt: 0
+Flame: 0
+Frost: 0
+Lightning: 0
+Poison: 0
+Holy: 0
+Eclipse: 0"
 id = "Glaive"
 display_name = "Glaive"
 icon = ExtResource("1_grgaj")

@@ -6,6 +6,7 @@ var direction : Vector2 = Vector2.ZERO
 # Player characteristics
 @export var max_health: int = 100
 var health : int = 100
+var protection: int = 0
 
 # Screen limits
 var limit_left : int = 0
@@ -28,6 +29,7 @@ signal HealthChanged()
 func _ready():
 	state_machine.Initialize(self)
 	LevelManager.TileMapBoundsChanged.connect(UpdateLimits)
+	Inventory.armor_changed.connect(NewArmor)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -104,12 +106,19 @@ func GetHurt(damage : int) -> void:
 			particles.lifetime = 0.6
 			particles.emitting = true
 	
+	
 	# lose health if damage is positive, otherwise gain health
-	health  -= damage
+	if damage < 0: 
+		health  -= damage
+	else:
+		damage = damage * (100 - protection) / 100
+		health  -= damage
 	health = clampi(health, 0, 100)
+	
 	
 	print ("PlayerHealth: ", health)
 	HealthChanged.emit()
+	
 	
 func SetWeaponBonusDamage(damage : int) -> void:
 	hurt_box.SetBonusDamage(damage)
@@ -121,3 +130,13 @@ func UpdateLimits(bounds : Array[Vector2]) -> void:
 	limit_top = int(bounds[0].y)
 	limit_right = int(bounds[1].x)
 	limit_bottom = int(bounds[1].y)
+
+func NewArmor():
+	var armor = Inventory.get_armor()
+	if armor:
+		SetProtection(armor.protection)
+	else:
+		SetProtection(0)
+	
+func SetProtection(p : int) -> void:
+	protection = p

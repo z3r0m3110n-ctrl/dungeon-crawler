@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://4w1jemubiy23" path="res://props/sprites/Sword01.png" id="2_cewbv"]
 [ext_resource type="Texture2D" uid="uid://5fdtduat7nfi" path="res://props/sprites/shadow.png" id="3_o4425"]
 [ext_resource type="Script" uid="uid://jcmflwpps5kr" path="res://inventory/scripts/item_data.gd" id="3_sfw8p"]
-[ext_resource type="Texture2D" uid="uid://cfxnfm71q0dtr" path="res://props/sprites/Sword02.png" id="4_h5wwm"]
 
 [sub_resource type="Resource" id="Resource_jppet"]
 script = ExtResource("3_sfw8p")
@@ -25,7 +24,7 @@ item = SubResource("Resource_jppet")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1129702706]
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("4_h5wwm")
+texture = ExtResource("2_cewbv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=253261782]
 position = Vector2(-1, 22)
@@ -43,6 +42,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=828254976]
+visible = false
 position = Vector2(1, 42)
 scale = Vector2(3.9849558, 1.1356707)
 texture = ExtResource("3_o4425")

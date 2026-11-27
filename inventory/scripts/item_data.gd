@@ -21,6 +21,7 @@ enum EquipSlot {
 
 
 # This is the general information for the item
+@export_multiline var description := ""
 @export var id : String # the item id
 @export var display_name : String # the display name
 @export var icon : Texture2D
@@ -33,3 +34,6 @@ enum EquipSlot {
 # WeaponStats
 @export_group("Weapon")
 @export var damage := 0
+
+@export_group("Armor")
+@export var protection := 0

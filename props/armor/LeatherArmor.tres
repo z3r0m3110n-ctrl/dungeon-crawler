@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ct1dmoatnin7d"]
+
+[ext_resource type="Texture2D" uid="uid://vx38fpf7v67n" path="res://props/armor/LeatherArmor.png" id="1_wbp0a"]
+[ext_resource type="Script" uid="uid://jcmflwpps5kr" path="res://inventory/scripts/item_data.gd" id="2_4qnc8"]
+
+[resource]
+script = ExtResource("2_4qnc8")
+description = "Protection: 
+Blade: 5
+Blunt: 0
+Flame: 0
+Frost: 0
+Lightning: 0
+Poison: 0
+Holy: 0
+Eclipse: 0"
+id = "Leather_Armor"
+display_name = "Leather Armor"
+icon = ExtResource("1_wbp0a")
+type = 1
+equip_slot = 2
+damage = 5
+protection = 5
+metadata/_custom_type_script = "uid://jcmflwpps5kr"

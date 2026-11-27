@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b60cqrfed5g2s"]
+
+[ext_resource type="Script" uid="uid://cx05hhuritl1t" path="res://UI/inventory_slot.gd" id="1_v6lmj"]
+
+[node name="ArmorSlot" type="Panel" unique_id=835580157]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 81.0
+offset_bottom = 114.0
+script = ExtResource("1_v6lmj")
+index = 1
+equip_slot = 2
+kind = 1
+
+[node name="Icon" type="TextureRect" parent="." unique_id=786219883]
+layout_mode = 0
+offset_right = 79.0
+offset_bottom = 114.0
+flip_h = true
+
+[node name="QuantityLabel" type="Label" parent="." unique_id=1613899181]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 90.0
+offset_right = 80.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 2
+vertical_alignment = 2

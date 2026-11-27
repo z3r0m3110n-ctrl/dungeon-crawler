@@ -9,7 +9,7 @@ extends Area2D
 			_apply_item()
 @export var qty := 1
 @export var pickup_range := 64.0
-
+@export_multiline var description := ""
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var label: Label = $Label
 

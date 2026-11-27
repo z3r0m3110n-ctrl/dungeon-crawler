@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://b02ygbenfv6wx" path="res://props/weapons/blunt/Mace.tscn" id="19_5m40n"]
 [ext_resource type="PackedScene" uid="uid://c4v3ws18tj6io" path="res://props/weapons/blunt/Hammer.tscn" id="20_jufm4"]
 [ext_resource type="PackedScene" uid="uid://c142gg7koeytp" path="res://props/weapons/blunt/Flange.tscn" id="21_ymgag"]
+[ext_resource type="PackedScene" uid="uid://c7aaqledmgk6q" path="res://props/weapons/Axes/Broadaxe.tscn" id="22_ymgag"]
+[ext_resource type="PackedScene" uid="uid://c48q8cdbft2tc" path="res://props/armor/LeatherArmor.tscn" id="23_u2qr3"]
 
 [sub_resource type="Theme" id="Theme_4bqqs"]
 
@@ -12175,9 +12177,17 @@ position = Vector2(-29, 432)
 
 [node name="Mace" parent="." unique_id=1893875521 instance=ExtResource("19_5m40n")]
 position = Vector2(534, 485)
+description = ""
 
 [node name="Hammer" parent="." unique_id=1671342399 instance=ExtResource("20_jufm4")]
 position = Vector2(304, 363)
 
 [node name="Flange" parent="." unique_id=1979548183 instance=ExtResource("21_ymgag")]
 position = Vector2(654, 388)
+description = ""
+
+[node name="Broadaxe" parent="." unique_id=736794710 instance=ExtResource("22_ymgag")]
+position = Vector2(819, 521)
+
+[node name="LeatherArmor" parent="." unique_id=337851124 instance=ExtResource("23_u2qr3")]
+position = Vector2(689, 566)
